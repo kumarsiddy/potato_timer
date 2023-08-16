@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:potato_timer/applications/base/base_store.dart';
 import 'package:provider/provider.dart';
 
 void hideKeyboard(BuildContext context) {
