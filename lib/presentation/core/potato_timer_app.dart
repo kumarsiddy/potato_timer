@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:potato_timer/presentation/presentation/core/router/router.dart';
+import 'package:potato_timer/presentation/core/router/router.dart';
+import 'package:potato_timer/presentation/design_library/design_library.dart';
 
 /// This key [globalNavigatorKey] is created to be used for showing
 /// snackbar/toast and sometimes for showing a dialog
 final GlobalKey<NavigatorState> globalNavigatorKey =
     GlobalKey<NavigatorState>();
 
-class HighlevelApp extends StatelessWidget {
-  const HighlevelApp({super.key});
+class PotatoTimerApp extends StatelessWidget {
+  const PotatoTimerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,18 +17,21 @@ class HighlevelApp extends StatelessWidget {
       useInheritedMediaQuery: true,
       builder: (_, __) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.deepPurple,
-          ),
-          useMaterial3: true,
-        ),
+        theme: _getCustomThemeData(),
         navigatorKey: globalNavigatorKey,
-        title: 'Highlevel Assignment',
-        navigatorObservers: [],
+        title: 'Potato Timer',
         onGenerateRoute: RouteHandler.generateRoute,
         initialRoute: RouteId.splash.name,
       ),
     );
   }
+}
+
+ThemeData _getCustomThemeData() {
+  return ThemeData(
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: AppColors.primary,
+    ),
+    useMaterial3: true,
+  );
 }

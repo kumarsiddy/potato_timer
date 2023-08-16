@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:potato_timer/presentation/presentation/core/design_library/app_colors.dart';
+import 'package:potato_timer/presentation/design_library/design_library.dart';
 
 class DoublePressToExit extends StatefulWidget {
   final Widget child;
