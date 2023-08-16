@@ -1,68 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:potato_timer/utils/image_assets.dart';
 
 abstract class BaseImage extends StatelessWidget {
-  final String imageKey;
+  final ImageAsset imageAsset;
   final double height;
   final double width;
 
   const BaseImage({
     Key? key,
-    required this.imageKey,
+    required this.imageAsset,
     required this.height,
     required this.width,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (Uri.tryParse(imageKey)?.hasAbsolutePath ?? false) {
-      if (imageKey.endsWith('.svg')) {
+    if (Uri.tryParse(imageAsset.path)?.hasAbsolutePath ?? false) {
+      if (imageAsset.path.endsWith('.svg')) {
         return SvgPicture.network(
-          imageKey,
+          imageAsset.path,
           height: height,
           width: width,
         );
       }
 
       return Image.network(
-        imageKey,
+        imageAsset.path,
         height: height,
         width: width,
       );
     }
 
-    if (imageKey.endsWith('.svg')) {
+    if (imageAsset.path.endsWith('.svg')) {
       return SvgPicture.asset(
-        imageKey,
+        imageAsset.path,
         height: height,
         width: width,
       );
     }
 
     return Image.asset(
-      imageKey,
+      imageAsset.path,
       height: height,
       width: width,
     );
   }
 }
 
-class AppIcon extends BaseImage {
-  const AppIcon({
-    required final String iconKey,
-  }) : super(
-          imageKey: iconKey,
-          height: 56,
-          width: 56,
-        );
-}
-
 class DialogIcon extends BaseImage {
   const DialogIcon({
     super.key,
-    required final String iconKey,
+    required final ImageAsset imageAsset,
   }) : super(
-          imageKey: iconKey,
+          imageAsset: imageAsset,
           height: 64,
           width: 64,
         );
@@ -71,22 +62,22 @@ class DialogIcon extends BaseImage {
 class SnackIcon extends BaseImage {
   const SnackIcon({
     super.key,
-    required final String iconKey,
+    required final ImageAsset imageAsset,
   }) : super(
-          imageKey: iconKey,
+          imageAsset: imageAsset,
           height: 35,
           width: 35,
         );
 }
 
-class FlexibleIcon extends BaseImage {
-  const FlexibleIcon({
+class FlexibleImage extends BaseImage {
+  const FlexibleImage({
     super.key,
-    required final String iconKey,
+    required final ImageAsset imageAsset,
     required double height,
     double? width,
   }) : super(
-          imageKey: iconKey,
+          imageAsset: imageAsset,
           height: height,
           width: width ?? height,
         );

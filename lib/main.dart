@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:potato_timer/di/injection.dart';
 import 'package:potato_timer/env.dart';
+import 'package:potato_timer/presentation/core/potato_timer_app.dart';
 
 Future<void> mainCommon(Env env) async {
   runZonedGuarded<Future<void>>(
@@ -10,11 +12,16 @@ Future<void> mainCommon(Env env) async {
       // Call this if the main method is asynchronous
       WidgetsFlutterBinding.ensureInitialized();
 
+      // Configuring dependencies when app starts
+      configureDependencies(env);
+
       SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp],
       ).then(
         (_) {
-          runApp(Container());
+          runApp(
+            const PotatoTimerApp(),
+          );
         },
       );
     },
