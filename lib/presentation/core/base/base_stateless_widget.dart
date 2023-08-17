@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:potato_timer/applications/base/base_store.dart';
+import 'package:potato_timer/di/injection.dart';
 import 'package:potato_timer/infrastructure/dtos/dtos.dart';
 import 'package:potato_timer/presentation/core/base/app_life_cycle_observer.dart';
 import 'package:potato_timer/presentation/core/base/size_config.dart';
@@ -19,7 +20,7 @@ part 'no_internet_page.dart';
 
 abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
     with RouteAware {
-  late final T childStore = getImplementedStore();
+  late final T childStore = _getStore();
 
   BaseStatelessWidget({super.key});
 
@@ -92,7 +93,11 @@ abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
 
   Widget buildScreen(BuildContext context);
 
-  T getImplementedStore();
+  /// This method [_getStore] will automatically will get the MobX Store
+  /// using get_it and this will get inserted into the widget tree
+  T _getStore() {
+    return getIt<T>();
+  }
 
   /// Called when the top route has been popped off, and the current route
   /// shows up.

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:mobx/mobx.dart';
 import 'package:potato_timer/applications/splash/splash_store.dart';
-import 'package:potato_timer/di/injection.dart';
 import 'package:potato_timer/presentation/core/base/base_stateless_widget.dart';
 import 'package:potato_timer/presentation/core/base/size_config.dart';
 import 'package:potato_timer/presentation/core/router/router.dart';
@@ -21,11 +20,6 @@ class SplashPage extends BaseStatelessWidget<SplashStore> {
     return Scaffold(
       body: _SplashUI(),
     );
-  }
-
-  @override
-  SplashStore getImplementedStore() {
-    return getIt<SplashStore>();
   }
 
   @override
