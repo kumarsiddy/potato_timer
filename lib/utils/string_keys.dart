@@ -1,8 +1,10 @@
-abstract class StringKeys {
-  static const String pleaseTryAgain = 'Some error occurred, Please try again!';
-  static const String someErrorOccurred =
-      'Some error occurred, Please try again!';
-  static const String makeSureInternetIsOn = 'Make sure internet is connected';
+enum StringKey {
+  pressBackToExit('Please Press Back Again to exit'),
+  pleaseTryAgain('Some error occurred, Please try again!'),
+  someErrorOccurred('Some error occurred, Please try again!'),
+  makeSureInternetIsOn('Make sure internet is connected');
 
-  StringKeys._();
+  final String value;
+
+  const StringKey(this.value);
 }

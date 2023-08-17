@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:potato_timer/presentation/design_library/design_library.dart';
+import 'package:potato_timer/utils/utils.dart';
 
 class DoublePressToExit extends StatefulWidget {
   final Widget child;
@@ -61,10 +62,10 @@ class DoublePressToExitState extends State<DoublePressToExit> {
   SnackBar _getExitSnackBar(
     BuildContext context,
   ) {
-    return const SnackBar(
-      content: Text('Please Press Back Again to exit'),
-      backgroundColor: AppColors.red,
-      duration: Duration(
+    return SnackBar(
+      content: AppText.bodyMedium(StringKey.pressBackToExit),
+      backgroundColor: AppColor.red.value,
+      duration: const Duration(
         seconds: 2,
       ),
       behavior: SnackBarBehavior.floating,

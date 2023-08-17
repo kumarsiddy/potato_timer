@@ -5,7 +5,7 @@ class _NoInternetPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColor.white.value,
         body: DoublePressToExit(
           child: _GetNoInternetPage(),
         ),
@@ -27,13 +27,15 @@ class _GetNoInternetPageState extends State<_GetNoInternetPage> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(12),
-      color: AppColors.white,
+      color: AppColor.white.value,
       width: double.infinity,
       height: SizeConfig.safeAreaScreenHeight,
-      child: const Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(StringKeys.makeSureInternetIsOn),
+        children: [
+          AppText.bodyMedium(
+            StringKey.makeSureInternetIsOn,
+          ),
         ],
       ),
     );

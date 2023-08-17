@@ -8,7 +8,7 @@ Flushbar _getFlushBar(
   BuildContext context,
   String message, {
   required ImageAsset imageAsset,
-  required Color backgroundColor,
+  required AppColor backgroundColor,
   int? durationInSeconds,
   bool? dismissible,
   OnWidgetClickListener? onCloseListener,
@@ -17,13 +17,13 @@ Flushbar _getFlushBar(
   return Flushbar(
     isDismissible: dismissible ?? true,
     message: message,
-    icon: SnackIcon(
+    icon: AppImage.snackIcon(
       imageAsset: imageAsset,
     ),
     duration: (dismissible ?? true)
         ? Duration(seconds: durationInSeconds ?? 2)
         : null,
-    backgroundColor: backgroundColor,
+    backgroundColor: backgroundColor.value,
     margin: const EdgeInsets.only(
       left: 16,
       right: 16,
@@ -41,7 +41,7 @@ Flushbar _getFlushBar(
           buttonClickedFirstTime = true;
         }
       },
-      child: FlexibleImage(
+      child: AppImage(
         imageAsset: ImageAsset.cross,
         height: 15.h,
         width: 15.h,
@@ -49,7 +49,7 @@ Flushbar _getFlushBar(
     ),
     boxShadows: [
       BoxShadow(
-        color: backgroundColor.withOpacity(0.8),
+        color: backgroundColor.value.withOpacity(0.8),
         offset: const Offset(0, 2),
         blurRadius: 3,
       ),
@@ -61,7 +61,7 @@ Future<void> _show(
   BuildContext context,
   String message, {
   required ImageAsset imageAsset,
-  required Color backgroundColor,
+  required AppColor backgroundColor,
   int? durationInSeconds,
   bool? dismissible,
   OnWidgetClickListener? onCloseListener,
@@ -88,7 +88,7 @@ Future<void> showInfoSnackbar(
     context,
     message,
     dismissible: dismissible,
-    backgroundColor: AppColors.green,
+    backgroundColor: AppColor.green,
     imageAsset: ImageAsset.tick,
     onCloseListener: onCloseListener,
   );
@@ -104,7 +104,7 @@ Future<void> showErrorSnackbar(
     context,
     message,
     dismissible: dismissible,
-    backgroundColor: AppColors.red,
+    backgroundColor: AppColor.red,
     imageAsset: ImageAsset.info,
     onCloseListener: onCloseListener,
   );

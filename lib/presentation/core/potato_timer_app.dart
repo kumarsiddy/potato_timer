@@ -30,7 +30,7 @@ class PotatoTimerApp extends StatelessWidget {
 ThemeData _getCustomThemeData() {
   return ThemeData(
     colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.primary,
+      seedColor: AppColor.primary.value,
     ),
     useMaterial3: true,
   );

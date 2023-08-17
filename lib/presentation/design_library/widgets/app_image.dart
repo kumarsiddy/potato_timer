@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:potato_timer/presentation/design_library/design_library.dart';
 import 'package:potato_timer/utils/image_assets.dart';
 
-abstract class BaseImage extends StatelessWidget {
+abstract class _BaseImage extends StatelessWidget {
   final ImageAsset imageAsset;
   final double height;
   final double width;
 
-  const BaseImage({
+  const _BaseImage({
     Key? key,
     required this.imageAsset,
     required this.height,
@@ -48,30 +49,8 @@ abstract class BaseImage extends StatelessWidget {
   }
 }
 
-class DialogIcon extends BaseImage {
-  const DialogIcon({
-    super.key,
-    required final ImageAsset imageAsset,
-  }) : super(
-          imageAsset: imageAsset,
-          height: 64,
-          width: 64,
-        );
-}
-
-class SnackIcon extends BaseImage {
-  const SnackIcon({
-    super.key,
-    required final ImageAsset imageAsset,
-  }) : super(
-          imageAsset: imageAsset,
-          height: 35,
-          width: 35,
-        );
-}
-
-class FlexibleImage extends BaseImage {
-  const FlexibleImage({
+class AppImage extends _BaseImage {
+  const AppImage({
     super.key,
     required final ImageAsset imageAsset,
     required double height,
@@ -81,4 +60,24 @@ class FlexibleImage extends BaseImage {
           height: height,
           width: width ?? height,
         );
+
+  factory AppImage.dialogIcon({
+    required final ImageAsset imageAsset,
+  }) {
+    return AppImage(
+      imageAsset: imageAsset,
+      height: 64.r,
+      width: 64.r,
+    );
+  }
+
+  factory AppImage.snackIcon({
+    required final ImageAsset imageAsset,
+  }) {
+    return AppImage(
+      imageAsset: imageAsset,
+      height: 36.r,
+      width: 36.r,
+    );
+  }
 }

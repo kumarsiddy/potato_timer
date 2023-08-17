@@ -52,7 +52,7 @@ abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
     );
   }
 
-  Color get statusBarColor => AppColors.white;
+  Color get statusBarColor => AppColor.white.value;
 
   bool get forceRefreshOnConnectionChange => false;
 

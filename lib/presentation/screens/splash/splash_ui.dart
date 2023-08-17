@@ -8,12 +8,11 @@ class _SplashUI extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Center(
-          child: FlexibleImage(
+          child: AppImage(
             imageAsset: ImageAsset.splash,
             height: 180.h,
           ),
         ),
-
       ],
     );
   }

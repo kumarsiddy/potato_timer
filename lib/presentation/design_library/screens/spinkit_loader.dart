@@ -4,7 +4,7 @@ import 'package:potato_timer/presentation/core/base/size_config.dart';
 import 'package:potato_timer/presentation/design_library/design_library.dart';
 
 class SpinkitLoader extends StatelessWidget {
-  final Color? backgroundColor;
+  final AppColor? backgroundColor;
 
   const SpinkitLoader({
     Key? key,
@@ -15,9 +15,9 @@ class SpinkitLoader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: SizeConfig.screenHeight,
-      color: backgroundColor ?? AppColors.blackTransparent,
+      color: backgroundColor?.value ?? AppColor.blackTransparent.value,
       child: SpinKitFadingCircle(
-        color: AppColors.primary,
+        color: AppColor.primary.value,
         size: 48.h,
       ),
     );
