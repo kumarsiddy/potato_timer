@@ -9,6 +9,7 @@ enum AppColor {
   white(Colors.white),
   red(Colors.red),
   green(Colors.green),
+  grey(Colors.grey),
   blackTransparent(Colors.black12);
 
   final Color value;

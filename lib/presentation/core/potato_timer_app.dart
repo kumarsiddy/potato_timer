@@ -45,5 +45,37 @@ ThemeData _getCustomThemeData(
       scrolledUnderElevation: 2,
       shadowColor: Theme.of(context).colorScheme.shadow,
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      hintStyle: GoogleFonts.latoTextTheme().bodyMedium,
+      errorStyle: GoogleFonts.latoTextTheme().bodyMedium?.copyWith(
+            color: AppColor.red.value,
+          ),
+      fillColor: AppColor.white.value,
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColor.primary.value,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(8.r)),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColor.grey.value,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(8.r)),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColor.red.value,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(8.r)),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColor.red.value,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(8.r)),
+      ),
+    ),
   );
 }

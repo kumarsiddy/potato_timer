@@ -52,12 +52,10 @@ abstract class _BaseImage extends StatelessWidget {
 class AppImage extends _BaseImage {
   const AppImage({
     super.key,
-    required final ImageAsset imageAsset,
-    required double height,
+    required super.imageAsset,
+    required super.height,
     double? width,
   }) : super(
-          imageAsset: imageAsset,
-          height: height,
           width: width ?? height,
         );
 

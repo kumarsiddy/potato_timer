@@ -5,7 +5,19 @@ class _TaskPageUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return ParentWrapperWidget(
       height: SizeConfig.safeAreaScreenHeightWithoutToolbar,
-      child: Container(),
+      child: Column(
+        children: [
+          Observer(
+            builder: (ctx) => AppTextForm.taskName(
+              storeOf<TaskStore>(ctx).taskNameValueObject,
+              onChanged: storeOf<TaskStore>(context).onTaskNameChange,
+              labelTextKey: StringKey.title,
+              hintTextKey: StringKey.sampleTitle,
+              errorTextKey: StringKey.invalidTitle,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

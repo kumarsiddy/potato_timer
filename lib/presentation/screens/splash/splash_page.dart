@@ -6,8 +6,7 @@ import 'package:potato_timer/presentation/core/base/base_stateless_widget.dart';
 import 'package:potato_timer/presentation/core/base/size_config.dart';
 import 'package:potato_timer/presentation/core/router/router.dart';
 import 'package:potato_timer/presentation/design_library/design_library.dart';
-import 'package:potato_timer/utils/image_assets.dart';
-import 'package:potato_timer/utils/string_keys.dart';
+import 'package:potato_timer/utils/utils.dart';
 
 part 'splash_page_ui.dart';
 
@@ -33,7 +32,7 @@ class SplashPage extends BaseStatelessWidget<SplashStore> {
     BuildContext context,
   ) {
     when(
-      (_) => store(context).loaded,
+      (_) => storeOf<SplashStore>(context).loaded,
       () => RouteHandler.navigateToOnly(
         context,
         routeId: RouteId.homePage,

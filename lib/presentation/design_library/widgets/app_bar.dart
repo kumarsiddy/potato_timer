@@ -46,18 +46,12 @@ abstract class _BaseAppBar extends StatelessWidget
 
 class CustomAppBar extends _BaseAppBar {
   const CustomAppBar._({
-    StringKey? stringKey,
-    bool? backButtonRequired,
-    Widget? leading,
-    AppColor? backgroundColor,
-    bool? shadow,
-  }) : super(
-          stringKey: stringKey,
-          backButtonRequired: backButtonRequired,
-          leading: leading,
-          backgroundColor: backgroundColor,
-          shadow: shadow,
-        );
+    super.stringKey,
+    super.backButtonRequired,
+    super.leading,
+    super.backgroundColor,
+    super.shadow,
+  });
 
   factory CustomAppBar.noBackButton({
     StringKey? stringKey,

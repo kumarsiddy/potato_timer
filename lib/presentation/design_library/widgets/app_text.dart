@@ -82,30 +82,22 @@ abstract class _BaseText extends StatelessWidget {
 }
 
 class AppText extends _BaseText {
-  const AppText._({
-    required StringKey stringKey,
-    required _TextType type,
-    AppColor? color,
-    double? height,
-    int? maxLines,
-    TextAlign? textAlign,
-    TextOverflow? overflow,
-  }) : super(
-          stringKey,
-          type: type,
-          color: color,
-          height: height,
-          maxLines: maxLines,
-          textAlign: textAlign,
-          overflow: overflow,
-        );
+  const AppText._(
+    super.stringKey, {
+    required super.type,
+    super.color,
+    super.height,
+    super.maxLines,
+    super.textAlign,
+    super.overflow,
+  });
 
   factory AppText.displayLarge(
     StringKey stringKey, {
     AppColor? color,
   }) {
     return AppText._(
-      stringKey: stringKey,
+      stringKey,
       type: _TextType.displayLarge,
       color: color,
       maxLines: 1,
@@ -117,7 +109,7 @@ class AppText extends _BaseText {
     AppColor? color,
   }) {
     return AppText._(
-      stringKey: stringKey,
+      stringKey,
       type: _TextType.displayMedium,
       color: color,
       maxLines: 1,
@@ -129,7 +121,7 @@ class AppText extends _BaseText {
     AppColor? color,
   }) {
     return AppText._(
-      stringKey: stringKey,
+      stringKey,
       type: _TextType.displaySmall,
       color: color,
       maxLines: 1,
@@ -141,7 +133,7 @@ class AppText extends _BaseText {
     AppColor? color,
   }) {
     return AppText._(
-      stringKey: stringKey,
+      stringKey,
       type: _TextType.headlineLarge,
       color: color,
       maxLines: 1,
@@ -153,7 +145,7 @@ class AppText extends _BaseText {
     AppColor? color,
   }) {
     return AppText._(
-      stringKey: stringKey,
+      stringKey,
       type: _TextType.headlineMedium,
       color: color,
       maxLines: 1,
@@ -165,7 +157,7 @@ class AppText extends _BaseText {
     AppColor? color,
   }) {
     return AppText._(
-      stringKey: stringKey,
+      stringKey,
       type: _TextType.headlineSmall,
       color: color,
       maxLines: 1,
@@ -177,7 +169,7 @@ class AppText extends _BaseText {
     AppColor? color,
   }) {
     return AppText._(
-      stringKey: stringKey,
+      stringKey,
       type: _TextType.titleLarge,
       color: color,
       maxLines: 1,
@@ -189,7 +181,7 @@ class AppText extends _BaseText {
     AppColor? color,
   }) {
     return AppText._(
-      stringKey: stringKey,
+      stringKey,
       type: _TextType.titleMedium,
       color: color,
       maxLines: 1,
@@ -201,7 +193,7 @@ class AppText extends _BaseText {
     AppColor? color,
   }) {
     return AppText._(
-      stringKey: stringKey,
+      stringKey,
       type: _TextType.titleSmall,
       color: color,
       maxLines: 1,
@@ -213,7 +205,7 @@ class AppText extends _BaseText {
     AppColor? color,
   }) {
     return AppText._(
-      stringKey: stringKey,
+      stringKey,
       type: _TextType.bodyMedium,
       color: color,
     );

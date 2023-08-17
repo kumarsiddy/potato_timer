@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void hideKeyboard(BuildContext context) {
   FocusScope.of(context).unfocus();
@@ -18,4 +19,10 @@ bool isActiveScreen(BuildContext context) =>
 
 bool isBuildContextSafeToUse(BuildContext context) {
   return context.mounted;
+}
+
+T storeOf<T>(
+  BuildContext context,
+) {
+  return Provider.of<T>(context, listen: false);
 }

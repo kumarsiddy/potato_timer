@@ -1,4 +1,8 @@
 enum StringKey {
+  invalidTitle('Please enter a valid title'),
+  title('Title'),
+  sampleTitle('Enter your task title'),
+  description('Description'),
   addTask('Add Task'),
   empty(''),
   potatoTimer('Potato Timer'),
