@@ -9,7 +9,7 @@ import 'package:potato_timer/presentation/design_library/design_library.dart';
 import 'package:potato_timer/utils/image_assets.dart';
 import 'package:potato_timer/utils/string_keys.dart';
 
-part 'splash_ui.dart';
+part 'splash_page_ui.dart';
 
 class SplashPage extends BaseStatelessWidget<SplashStore> {
   SplashPage({super.key});

@@ -1,4 +1,5 @@
 enum StringKey {
+  addTask('Add Task'),
   empty(''),
   potatoTimer('Potato Timer'),
   pressBackToExit('Please Press Back Again to exit'),

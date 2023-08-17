@@ -21,7 +21,7 @@ abstract class _BaseAppBar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: AppText.headlineMedium(
+      title: AppText.titleLarge(
         stringKey ?? StringKey.empty,
         color: AppColor.white,
       ),
@@ -60,6 +60,15 @@ class CustomAppBar extends _BaseAppBar {
         );
 
   factory CustomAppBar.noBackButton({
+    StringKey? stringKey,
+  }) {
+    return CustomAppBar._(
+      stringKey: stringKey,
+      backButtonRequired: false,
+    );
+  }
+
+  factory CustomAppBar.primary({
     StringKey? stringKey,
   }) {
     return CustomAppBar._(
