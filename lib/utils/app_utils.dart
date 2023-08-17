@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:potato_timer/applications/base/base_store.dart';
-import 'package:provider/provider.dart';
 
 void hideKeyboard(BuildContext context) {
   FocusScope.of(context).unfocus();
@@ -17,10 +15,6 @@ bool isCurrentScreen(BuildContext context) =>
 
 bool isActiveScreen(BuildContext context) =>
     ModalRoute.of(context)?.isActive ?? false;
-
-T getStore<T extends BaseStore>(BuildContext context) {
-  return Provider.of<T>(context, listen: false);
-}
 
 bool isBuildContextSafeToUse(BuildContext context) {
   return context.mounted;

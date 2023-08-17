@@ -57,7 +57,7 @@ abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
   ) {
     if (forceRefreshOnConnectionChange && status.working) {
       final args = getArgsFromContext(context);
-      getStore<T>(context).init(args);
+      store(context).init(args);
     }
   }
 
@@ -93,10 +93,17 @@ abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
 
   Widget buildScreen(BuildContext context);
 
-  /// This method [_getStore] will automatically will get the MobX Store
-  /// using get_it and this will get inserted into the widget tree
+  // This method [_getStore] will automatically will get the MobX Store
+  // using get_it and this will get inserted into the widget tree
   T _getStore() {
     return getIt<T>();
+  }
+
+  /// This method will return the implemented store for this widget
+  T store(
+    BuildContext context,
+  ) {
+    return Provider.of<T>(context, listen: false);
   }
 
   /// Called when the top route has been popped off, and the current route
