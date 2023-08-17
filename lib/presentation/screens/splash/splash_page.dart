@@ -31,10 +31,9 @@ class SplashPage extends BaseStatelessWidget<SplashStore> {
   @override
   Future<void> onStart(
     BuildContext context,
-    Map<String, dynamic>? args,
   ) async {
     _registerReactions(context);
-    return super.onStart(context, args);
+    return super.onStart(context);
   }
 
   void _registerReactions(

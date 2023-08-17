@@ -35,14 +35,8 @@ abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
       ],
       child: _BaseStatefulWidget(
         baseStore: childStore,
-        onStart: (ctx) => onStart(
-          ctx,
-          argsFromPreviousRoute,
-        ),
-        onResume: (ctx) => onResume(
-          ctx,
-          argsFromPreviousRoute,
-        ),
+        onStart: onStart,
+        onResume: onResume,
         onSuspend: onSuspend,
         onDestroy: onDestroy,
         onConnectivityChange: onConnectivityChange,
@@ -70,7 +64,6 @@ abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
   @mustCallSuper
   Future<void> onStart(
     BuildContext context,
-    Map<String, dynamic>? args,
   ) async {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
@@ -83,7 +76,6 @@ abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
   /// This is lifecycle call for the app, not for this widget
   Future<void> onResume(
     BuildContext context,
-    Map<String, dynamic>? args,
   ) async {}
 
   /// This is lifecycle call for the app, not for this widget
