@@ -3,6 +3,8 @@ import 'package:potato_timer/applications/home_page/home_page_store.dart';
 import 'package:potato_timer/presentation/core/base/base_stateless_widget.dart';
 import 'package:potato_timer/presentation/core/base/size_config.dart';
 import 'package:potato_timer/presentation/design_library/design_library.dart';
+import 'package:potato_timer/presentation/design_library/widgets/app_bar.dart';
+import 'package:potato_timer/utils/string_keys.dart';
 
 part 'home_page_ui.dart';
 
@@ -16,6 +18,9 @@ class HomePage extends BaseStatelessWidget<HomePageStore> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add),
+      ),
+      appBar: CustomAppBar.noBackButton(
+        stringKey: StringKey.potatoTimer,
       ),
     );
   }

@@ -1,4 +1,5 @@
 enum StringKey {
+  empty(''),
   potatoTimer('Potato Timer'),
   pressBackToExit('Please Press Back Again to exit'),
   pleaseTryAgain('Some error occurred, Please try again!'),

@@ -25,7 +25,7 @@ abstract class _SplashStore extends BaseStore with Store {
 
   @action
   Future<void> _loadData() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 1));
     _loaded = true;
   }
 }

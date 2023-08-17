@@ -20,7 +20,7 @@ class PotatoTimerApp extends StatelessWidget {
       useInheritedMediaQuery: true,
       builder: (_, __) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: _getCustomThemeData(),
+        theme: _getCustomThemeData(context),
         navigatorKey: globalNavigatorKey,
         title: 'Potato Timer',
         onGenerateRoute: RouteHandler.generateRoute,
@@ -30,10 +30,20 @@ class PotatoTimerApp extends StatelessWidget {
   }
 }
 
-ThemeData _getCustomThemeData() {
+ThemeData _getCustomThemeData(
+  BuildContext context,
+) {
   return ThemeData(
     colorSchemeSeed: AppColor.primary.value,
     useMaterial3: true,
     textTheme: GoogleFonts.latoTextTheme(),
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColor.primary.value,
+      iconTheme: IconThemeData(color: AppColor.white.value),
+      actionsIconTheme: IconThemeData(color: AppColor.white.value),
+      centerTitle: false,
+      scrolledUnderElevation: 2,
+      shadowColor: Theme.of(context).colorScheme.shadow,
+    ),
   );
 }
