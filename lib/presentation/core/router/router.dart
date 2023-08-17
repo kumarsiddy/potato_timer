@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:potato_timer/presentation/screens/home_page/home_page.dart';
 import 'package:potato_timer/presentation/screens/splash/splash_page.dart';
 
 abstract class RouteHandler {
@@ -69,6 +70,8 @@ abstract class RouteHandler {
     switch (routeID) {
       case RouteId.splash:
         return _buildRoute(routeSettings, SplashPage());
+      case RouteId.homePage:
+        return _buildRoute(routeSettings, HomePage());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
@@ -108,6 +111,7 @@ abstract class RouteHandler {
 
 enum RouteId {
   splash,
+  homePage,
   noRoute,
 }
 

@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:potato_timer/presentation/design_library/design_library.dart';
 import 'package:potato_timer/utils/string_keys.dart';
 
 abstract class _BaseText extends StatelessWidget {
@@ -10,7 +9,6 @@ abstract class _BaseText extends StatelessWidget {
   final _TextType type;
   final TextAlign? textAlign;
   final TextOverflow? overflow;
-  final double? minFontSize;
 
   const _BaseText(
     this.stringKey, {
@@ -19,7 +17,6 @@ abstract class _BaseText extends StatelessWidget {
     this.maxLines,
     this.textAlign,
     this.overflow,
-    this.minFontSize,
   });
 
   @override
@@ -34,7 +31,6 @@ abstract class _BaseText extends StatelessWidget {
       ),
       textAlign: textAlign ?? TextAlign.center,
       maxLines: maxLines ?? 3,
-      minFontSize: minFontSize ?? 12.sp,
       overflow: overflow,
     );
   }
@@ -98,7 +94,6 @@ class AppText extends _BaseText {
           maxLines: maxLines,
           textAlign: textAlign,
           overflow: overflow,
-          minFontSize: minFontSize,
         );
 
   factory AppText.displayLarge(
@@ -107,6 +102,7 @@ class AppText extends _BaseText {
     return AppText._(
       stringKey: stringKey,
       type: _TextType.displayLarge,
+      maxLines: 1,
     );
   }
 

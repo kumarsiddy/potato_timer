@@ -11,4 +11,21 @@ abstract class _SplashStore extends BaseStore with Store {
   _SplashStore(
     super.connectionAwareFacade,
   );
+
+  @readonly
+  bool _loaded = false;
+
+  @override
+  Future<void> init(
+    Map<String, dynamic>? args,
+  ) async {
+    _loadData();
+    return super.init(args);
+  }
+
+  @action
+  Future<void> _loadData() async {
+    await Future.delayed(const Duration(seconds: 3));
+    _loaded = true;
+  }
 }
