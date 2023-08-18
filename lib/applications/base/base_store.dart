@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:mobx/mobx.dart';
 import 'package:potato_timer/domain/i_connection_aware_facade.dart';
+import 'package:potato_timer/domain/i_exceptions.dart';
 import 'package:potato_timer/infrastructure/dtos/dtos.dart';
+import 'package:potato_timer/infrastructure/exceptions.dart';
 
 part 'base_store.g.dart';
 
@@ -16,6 +18,8 @@ abstract class _BaseStore with Store {
   ConnectionStatus? _connectionStatus;
   @readonly
   bool _loading = false;
+  @readonly
+  IAppException? _appException;
 
   _BaseStore(
     this._connectionAwareFacade,
@@ -50,5 +54,21 @@ abstract class _BaseStore with Store {
 
   Future<void> dispose() async {
     await _networkChangeSubscription.cancel();
+  }
+
+  @action
+  void handleException(
+    IAppException exception,
+  ) {
+    hideLoader();
+
+    switch (exception.runtimeType) {
+      case RecognizedException:
+        // updating [_appException] so that it can be
+        // observed on UI side, and can be handled accordingly
+        _appException = exception;
+      default:
+      // We can log the crash here to Crashlytics/Sentry
+    }
   }
 }

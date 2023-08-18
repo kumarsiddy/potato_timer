@@ -1,6 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 import 'package:potato_timer/applications/base/base_store.dart';
+import 'package:potato_timer/domain/i_task_handler_facade.dart';
+import 'package:potato_timer/domain/models/potato_timer_task.dart';
 import 'package:potato_timer/domain/value_validator_interface/i_value_object.dart';
 import 'package:potato_timer/infrastructure/value_validators/value_objects.dart';
 
@@ -10,10 +12,15 @@ part 'task_store.g.dart';
 class TaskStore = _TaskStore with _$TaskStore;
 
 abstract class _TaskStore extends BaseStore with Store {
-  _TaskStore(super.connectionAwareFacade);
+  final ITaskHandlerFacade _taskHandlerFacade;
+
+  _TaskStore(
+    super.connectionAwareFacade,
+    this._taskHandlerFacade,
+  );
 
   @readonly
-  IValueObject<String>? _taskNameValueObject;
+  IValueObject<String>? _taskTitleValueObject;
 
   @readonly
   IValueObject<String>? _taskDescriptionValueObject;
@@ -33,11 +40,14 @@ abstract class _TaskStore extends BaseStore with Store {
   @computed
   bool get validDuration => _isValidDuration();
 
+  @readonly
+  bool _taskSaved = false;
+
   @action
   void onTaskNameChange(
     String input,
   ) {
-    _taskNameValueObject = TaskNameValueObject(input);
+    _taskTitleValueObject = TaskNameValueObject(input);
   }
 
   @action
@@ -69,7 +79,26 @@ abstract class _TaskStore extends BaseStore with Store {
   }
 
   @action
-  void onAddTaskButtonClick() {}
+  Future<void> onAddTaskButtonClick() async {
+    showLoader();
+
+    final finishAt = DateTime.now().add(_duration);
+    final saveTaskOrFailure = await _taskHandlerFacade.addTask(
+      task: PotatoTimerTask(
+        title: _taskTitleValueObject!.getOrCrash(),
+        description: _taskDescriptionValueObject!.getOrCrash(),
+        finishAt: finishAt,
+      ),
+    );
+
+    saveTaskOrFailure.fold(
+      (exception) => handleException(exception),
+      (result) {
+        hideLoader();
+        _taskSaved = true;
+      },
+    );
+  }
 
   Duration _getDuration() {
     final hour = _hourValueObject?.value.fold<int?>((l) => null, (r) => r);
@@ -84,7 +113,7 @@ abstract class _TaskStore extends BaseStore with Store {
   }
 
   bool _isValidDuration() {
-    return _taskNameValueObject?.isValid == true &&
+    return _taskTitleValueObject?.isValid == true &&
         _taskDescriptionValueObject?.isValid == true &&
         _duration.inMilliseconds > 0;
   }

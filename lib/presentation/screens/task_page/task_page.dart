@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
+import 'package:mobx/mobx.dart';
 import 'package:potato_timer/applications/task/task_store.dart';
 import 'package:potato_timer/presentation/core/base/base_stateless_widget.dart';
 import 'package:potato_timer/presentation/core/base/size_config.dart';
+import 'package:potato_timer/presentation/core/router/router.dart';
 import 'package:potato_timer/presentation/design_library/design_library.dart';
 import 'package:potato_timer/utils/utils.dart';
 
@@ -19,6 +21,24 @@ class TaskPage extends BaseStatelessWidget<TaskStore> {
       appBar: CustomAppBar.primary(
         stringKey: StringKey.addTask,
       ),
+    );
+  }
+
+  @override
+  Future<void> onStart(BuildContext context) async {
+    await _registerTaskSavedReaction(context);
+    return super.onStart(context);
+  }
+
+  Future<void> _registerTaskSavedReaction(
+    BuildContext context,
+  ) async {
+    when(
+      (_) => storeOf<TaskStore>(context).taskSaved,
+      () async {
+        await showInfoSnackbar(context, 'Successfully Saved');
+        RouteHandler.pop(context);
+      },
     );
   }
 }

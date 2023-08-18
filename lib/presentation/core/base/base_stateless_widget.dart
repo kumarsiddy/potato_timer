@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
 import 'package:potato_timer/applications/base/base_store.dart';
 import 'package:potato_timer/di/injection.dart';
 import 'package:potato_timer/infrastructure/dtos/dtos.dart';
@@ -21,6 +22,7 @@ part 'no_internet_page.dart';
 abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
     with RouteAware {
   late final T childStore = _getStore();
+  late final ReactionDisposer _exceptionReactionDispose;
 
   BaseStatelessWidget({super.key});
 
@@ -72,6 +74,21 @@ abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
         statusBarIconBrightness: Brightness.light,
       ),
     );
+
+    _registerExceptionReaction(context);
+  }
+
+  Future<void> _registerExceptionReaction(
+    BuildContext context,
+  ) async {
+    _exceptionReactionDispose = reaction(
+      (_) => childStore.appException,
+      (appException) {
+        if (context.mounted && isCurrentScreen(context)) {
+          showErrorSnackbar(context, appException!.message);
+        }
+      },
+    );
   }
 
   /// This is lifecycle call for the app, not for this widget
@@ -88,6 +105,7 @@ abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
   Future<void> onDestroy(
     BuildContext context,
   ) async {
+    _exceptionReactionDispose();
     childStore.dispose();
   }
 

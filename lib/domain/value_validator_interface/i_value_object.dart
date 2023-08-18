@@ -14,4 +14,11 @@ abstract class IValueObject<T> {
       );
 
   bool get isValid => value.isRight();
+
+  T getOrCrash() {
+    return value.fold(
+      (failure) => throw FormatException(failure.failedValue.toString()),
+      (r) => r,
+    );
+  }
 }

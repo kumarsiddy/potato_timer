@@ -15,7 +15,7 @@ class _TaskPageUI extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AppTextForm.taskTitle(
-              store.taskNameValueObject,
+              store.taskTitleValueObject,
               onChanged: store.onTaskNameChange,
               labelTextKey: StringKey.title,
               hintTextKey: StringKey.sampleTitle,
