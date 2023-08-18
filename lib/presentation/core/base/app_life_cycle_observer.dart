@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 /// This class will be used to keep track of
 /// lifecycle of the app
 class AppLifeCycleObserver extends WidgetsBindingObserver {
-  final AsyncCallback resumeCallBack;
-  final AsyncCallback suspendingCallBack;
-
   AppLifeCycleObserver({
     required this.resumeCallBack,
     required this.suspendingCallBack,
   });
+
+  final AsyncCallback resumeCallBack;
+  final AsyncCallback suspendingCallBack;
 
   @override
   Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {

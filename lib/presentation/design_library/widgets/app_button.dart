@@ -6,14 +6,14 @@ import 'package:potato_timer/utils/string_keys.dart';
 /// It should have implementation of All buttons required for the app.
 /// As for this assignment only one button type is required
 abstract class _BaseButton extends StatelessWidget {
-  final StringKey stringKey;
-  final VoidCallback? onPressed;
-
   const _BaseButton({
     super.key,
     required this.stringKey,
     required this.onPressed,
   });
+
+  final StringKey stringKey;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

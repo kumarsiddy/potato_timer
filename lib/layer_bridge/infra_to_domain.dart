@@ -1,4 +1,4 @@
-import 'package:potato_timer/domain/models/potato_timer_task.dart';
+import 'package:potato_timer/domain/models/models.dart';
 import 'package:potato_timer/infrastructure/database/app_database.dart';
 
 PotatoTimerTask getTaskFromInfraDto(

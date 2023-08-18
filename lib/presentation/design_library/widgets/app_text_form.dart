@@ -4,16 +4,6 @@ import 'package:potato_timer/domain/value_validator_interface/i_value_object.dar
 import 'package:potato_timer/utils/utils.dart';
 
 abstract class _BaseTextForm extends StatelessWidget {
-  final IValueObject? valueObject;
-  final ValueChanged<String>? onChanged;
-  final StringKey? labelTextKey;
-  final StringKey? hintTextKey;
-  final StringKey? errorTextKey;
-  final TextInputType? textInputType;
-  final TextInputAction? inputAction;
-  final int? lengthLimit;
-  final int? maxLines;
-
   const _BaseTextForm(
     this.valueObject, {
     this.onChanged,
@@ -25,6 +15,16 @@ abstract class _BaseTextForm extends StatelessWidget {
     this.lengthLimit,
     this.maxLines,
   });
+
+  final IValueObject? valueObject;
+  final ValueChanged<String>? onChanged;
+  final StringKey? labelTextKey;
+  final StringKey? hintTextKey;
+  final StringKey? errorTextKey;
+  final TextInputType? textInputType;
+  final TextInputAction? inputAction;
+  final int? lengthLimit;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {

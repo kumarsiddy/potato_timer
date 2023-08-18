@@ -1,4 +1,4 @@
-import 'package:potato_timer/infrastructure/dtos/dtos.dart';
+import 'package:potato_timer/domain/models/models.dart';
 
 abstract class IConnectionAwareFacade {
   Stream<ConnectionStatus> get connectionStatusStream;

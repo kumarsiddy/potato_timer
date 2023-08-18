@@ -4,16 +4,16 @@ import 'package:potato_timer/presentation/design_library/design_library.dart';
 import 'package:potato_timer/utils/image_assets.dart';
 
 abstract class _BaseImage extends StatelessWidget {
-  final ImageAsset imageAsset;
-  final double height;
-  final double width;
-
   const _BaseImage({
     Key? key,
     required this.imageAsset,
     required this.height,
     required this.width,
   }) : super(key: key);
+
+  final ImageAsset imageAsset;
+  final double height;
+  final double width;
 
   @override
   Widget build(BuildContext context) {

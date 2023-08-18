@@ -4,14 +4,6 @@ import 'package:potato_timer/presentation/design_library/app_color.dart';
 import 'package:potato_timer/utils/string_keys.dart';
 
 abstract class _BaseText extends StatelessWidget {
-  final StringKey stringKey;
-  final AppColor? color;
-  final double? height;
-  final int? maxLines;
-  final _TextType type;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-
   const _BaseText(
     this.stringKey, {
     required this.type,
@@ -21,6 +13,14 @@ abstract class _BaseText extends StatelessWidget {
     this.textAlign,
     this.overflow,
   });
+
+  final StringKey stringKey;
+  final AppColor? color;
+  final double? height;
+  final int? maxLines;
+  final _TextType type;
+  final TextAlign? textAlign;
+  final TextOverflow? overflow;
 
   @override
   Widget build(

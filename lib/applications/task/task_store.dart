@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 import 'package:potato_timer/applications/base/base_store.dart';
 import 'package:potato_timer/domain/i_task_handler_facade.dart';
-import 'package:potato_timer/domain/models/potato_timer_task.dart';
+import 'package:potato_timer/domain/models/models.dart';
 import 'package:potato_timer/domain/value_validator_interface/i_value_object.dart';
 import 'package:potato_timer/infrastructure/value_validators/value_objects.dart';
 
@@ -12,12 +12,12 @@ part 'task_store.g.dart';
 class TaskStore = _TaskStore with _$TaskStore;
 
 abstract class _TaskStore extends BaseStore with Store {
-  final ITaskHandlerFacade _taskHandlerFacade;
-
   _TaskStore(
     super.connectionAwareFacade,
     this._taskHandlerFacade,
   );
+
+  final ITaskHandlerFacade _taskHandlerFacade;
 
   @readonly
   IValueObject<String>? _taskTitleValueObject;
@@ -92,7 +92,7 @@ abstract class _TaskStore extends BaseStore with Store {
     );
 
     saveTaskOrFailure.fold(
-      (exception) => handleException(exception),
+      handleException,
       (result) {
         hideLoader();
         _taskSaved = true;

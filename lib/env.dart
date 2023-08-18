@@ -1,7 +1,7 @@
 class Env {
-  final String name;
-
   const Env(this.name);
+
+  final String name;
 }
 
 const uat = 'uat';

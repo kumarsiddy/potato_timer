@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:potato_timer/domain/i_exceptions.dart';
-import 'package:potato_timer/domain/models/potato_timer_task.dart';
+import 'package:potato_timer/domain/models/models.dart';
 
 abstract class ITaskHandlerFacade {
   Future<Either<IAppException, bool>> addTask({

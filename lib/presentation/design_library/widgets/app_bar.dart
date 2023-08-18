@@ -4,12 +4,6 @@ import 'package:potato_timer/utils/string_keys.dart';
 
 abstract class _BaseAppBar extends StatelessWidget
     implements PreferredSizeWidget {
-  final StringKey? stringKey;
-  final bool? backButtonRequired;
-  final Widget? leading;
-  final AppColor? backgroundColor;
-  final bool? shadow;
-
   const _BaseAppBar({
     this.stringKey,
     this.backButtonRequired,
@@ -17,6 +11,12 @@ abstract class _BaseAppBar extends StatelessWidget
     this.backgroundColor,
     this.shadow,
   });
+
+  final StringKey? stringKey;
+  final bool? backButtonRequired;
+  final Widget? leading;
+  final AppColor? backgroundColor;
+  final bool? shadow;
 
   @override
   Widget build(BuildContext context) {

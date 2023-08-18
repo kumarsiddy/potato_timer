@@ -4,11 +4,6 @@ import 'package:potato_timer/presentation/design_library/widgets/app_button.dart
 import 'package:potato_timer/utils/string_keys.dart';
 
 class ParentWrapperWidget extends StatelessWidget {
-  final double height;
-  final Widget child;
-  final StringKey? buttonText;
-  final VoidCallback? onPressed;
-
   const ParentWrapperWidget({
     super.key,
     required this.height,
@@ -16,6 +11,11 @@ class ParentWrapperWidget extends StatelessWidget {
     this.buttonText,
     this.onPressed,
   });
+
+  final double height;
+  final Widget child;
+  final StringKey? buttonText;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

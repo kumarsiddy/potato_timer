@@ -1,15 +1,6 @@
 part of 'base_stateless_widget.dart';
 
 class _BaseStatefulWidget extends StatefulWidget {
-  final WidgetBuilderCallback builder;
-  final BuildContextCallback onStart;
-  final BuildContextCallback onResume;
-  final BuildContextCallback onSuspend;
-  final BuildContextCallback onDestroy;
-  final Function onConnectivityChange;
-  final Map<String, dynamic>? args;
-  final BaseStore baseStore;
-
   const _BaseStatefulWidget({
     Key? key,
     required this.baseStore,
@@ -21,6 +12,15 @@ class _BaseStatefulWidget extends StatefulWidget {
     required this.onConnectivityChange,
     this.args,
   }) : super(key: key);
+
+  final WidgetBuilderCallback builder;
+  final BuildContextCallback onStart;
+  final BuildContextCallback onResume;
+  final BuildContextCallback onSuspend;
+  final BuildContextCallback onDestroy;
+  final Function onConnectivityChange;
+  final Map<String, dynamic>? args;
+  final BaseStore baseStore;
 
   @override
   State<_BaseStatefulWidget> createState() => _BaseStatefulWidgetState();

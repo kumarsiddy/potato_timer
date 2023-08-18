@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class SizeConfig {
+  SizeConfig._();
+
   static late final double screenWidth;
   static late final double screenHeight;
   static late final double safeAreaScreenWidth;
@@ -19,8 +21,6 @@ abstract class SizeConfig {
   static late final double safeBlockVertical;
 
   static bool _firstTime = true;
-
-  SizeConfig._();
 
   static void init(BuildContext context) {
     if (!_firstTime) {

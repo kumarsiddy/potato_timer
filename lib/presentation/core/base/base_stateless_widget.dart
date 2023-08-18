@@ -6,7 +6,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 import 'package:potato_timer/applications/base/base_store.dart';
 import 'package:potato_timer/di/injection.dart';
-import 'package:potato_timer/infrastructure/dtos/dtos.dart';
+import 'package:potato_timer/domain/models/models.dart';
 import 'package:potato_timer/presentation/core/base/app_life_cycle_observer.dart';
 import 'package:potato_timer/presentation/core/base/size_config.dart';
 import 'package:potato_timer/presentation/design_library/design_library.dart';
@@ -21,10 +21,10 @@ part 'no_internet_page.dart';
 
 abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
     with RouteAware {
+  BaseStatelessWidget({super.key});
+
   late final T childStore = _getStore();
   late final ReactionDisposer _exceptionReactionDispose;
-
-  BaseStatelessWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

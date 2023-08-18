@@ -4,12 +4,11 @@ import 'package:potato_timer/presentation/core/base/size_config.dart';
 import 'package:potato_timer/presentation/design_library/design_library.dart';
 
 class SpinkitLoader extends StatelessWidget {
-  final AppColor? backgroundColor;
-
   const SpinkitLoader({
     Key? key,
     this.backgroundColor,
   }) : super(key: key);
+  final AppColor? backgroundColor;
 
   @override
   Widget build(BuildContext context) {

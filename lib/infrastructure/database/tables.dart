@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-/// Representation of [PotatoTimerTasks] from model
+/// Representation of PotatoTimerTasks from model
 /// which will be saved into database
 class Tasks extends Table {
   IntColumn get id => integer().autoIncrement()();

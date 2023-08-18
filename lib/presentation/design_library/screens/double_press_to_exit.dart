@@ -6,14 +6,14 @@ import 'package:potato_timer/presentation/design_library/design_library.dart';
 import 'package:potato_timer/utils/utils.dart';
 
 class DoublePressToExit extends StatefulWidget {
-  final Widget child;
-  final bool isDashboard;
-
   const DoublePressToExit({
     super.key,
     required this.child,
     this.isDashboard = false,
   });
+
+  final Widget child;
+  final bool isDashboard;
 
   @override
   DoublePressToExitState createState() => DoublePressToExitState();

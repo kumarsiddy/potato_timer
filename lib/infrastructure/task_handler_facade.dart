@@ -3,17 +3,17 @@ import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
 import 'package:potato_timer/domain/i_exceptions.dart';
 import 'package:potato_timer/domain/i_task_handler_facade.dart';
-import 'package:potato_timer/domain/models/potato_timer_task.dart';
+import 'package:potato_timer/domain/models/models.dart';
 import 'package:potato_timer/infrastructure/database/app_database.dart';
 import 'package:potato_timer/infrastructure/exceptions.dart';
 
 @Injectable(as: ITaskHandlerFacade)
 class TaskHandlerFacade extends ITaskHandlerFacade {
-  final AppDatabase _appDatabase;
-
   TaskHandlerFacade(
     this._appDatabase,
   );
+
+  final AppDatabase _appDatabase;
 
   @override
   Future<Either<IAppException, bool>> addTask({

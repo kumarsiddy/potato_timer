@@ -4,12 +4,18 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:injectable/injectable.dart';
 import 'package:potato_timer/domain/i_connection_aware_facade.dart';
+import 'package:potato_timer/domain/models/models.dart';
 import 'package:potato_timer/env.dart';
-import 'package:potato_timer/infrastructure/dtos/dtos.dart';
 import 'package:rxdart/rxdart.dart';
 
 @LazySingleton(as: IConnectionAwareFacade, env: injectionEnv)
 class ConnectionAwareFacade implements IConnectionAwareFacade {
+  ConnectionAwareFacade() {
+    _connectivity.onConnectivityChanged.listen(
+      (_) async => updateConnectionStatus(),
+    );
+  }
+
   static const int _defaultPort = 53;
   static const Duration _defaultTimeOut = Duration(milliseconds: 3000);
 
@@ -50,12 +56,6 @@ class ConnectionAwareFacade implements IConnectionAwareFacade {
   final connectionStatusSubject = PublishSubject<ConnectionStatus>();
 
   final Connectivity _connectivity = Connectivity();
-
-  ConnectionAwareFacade() {
-    _connectivity.onConnectivityChanged.listen(
-      (_) async => updateConnectionStatus(),
-    );
-  }
 
   @override
   Stream<ConnectionStatus> get connectionStatusStream =>
@@ -102,15 +102,15 @@ class ConnectionAwareFacade implements IConnectionAwareFacade {
 }
 
 class _AddressCheckOptions {
-  final InternetAddress address;
-  final int? port;
-  final Duration? timeout;
-
   _AddressCheckOptions(
     this.address, {
     this.port,
     this.timeout,
   });
+
+  final InternetAddress address;
+  final int? port;
+  final Duration? timeout;
 
   @override
   String toString() => '''AddressCheckOptions($address, $port, $timeout)''';
