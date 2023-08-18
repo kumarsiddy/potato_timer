@@ -32,7 +32,7 @@ abstract class _BaseText extends StatelessWidget {
         context,
         type: type,
       )?.copyWith(color: color?.value),
-      textAlign: textAlign ?? TextAlign.center,
+      textAlign: textAlign ?? TextAlign.start,
       maxLines: maxLines ?? 3,
       overflow: overflow,
     );

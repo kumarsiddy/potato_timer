@@ -13,12 +13,52 @@ abstract class _TaskStore extends BaseStore with Store {
   _TaskStore(super.connectionAwareFacade);
 
   @readonly
-  IValueObject<String?>? _taskNameValueObject;
+  IValueObject<String>? _taskNameValueObject;
+
+  @readonly
+  IValueObject<String>? _taskDescriptionValueObject;
+
+  @readonly
+  IValueObject<int?>? _hourValueObject;
+
+  @readonly
+  IValueObject<int?>? _minuteValueObject;
+
+  @readonly
+  IValueObject<int?>? _secondValueObject;
 
   @action
   void onTaskNameChange(
     String input,
   ) {
-    _taskNameValueObject = TaskName(input);
+    _taskNameValueObject = TaskNameValueObject(input);
+  }
+
+  @action
+  void onTaskDescriptionChange(
+    String input,
+  ) {
+    _taskDescriptionValueObject = TaskDescriptionValueObject(input);
+  }
+
+  @action
+  void onHourChange(
+    String input,
+  ) {
+    _hourValueObject = HourValueObject(input);
+  }
+
+  @action
+  void onMinuteChange(
+    String input,
+  ) {
+    _minuteValueObject = MinuteValueObject(input);
+  }
+
+  @action
+  void onSecondChange(
+    String input,
+  ) {
+    _secondValueObject = SecondValueObject(input);
   }
 }

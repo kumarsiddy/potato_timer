@@ -8,8 +8,8 @@ abstract class IValueObject<T> {
 
   Either<IValueFailure<T>, T> get value;
 
-  String get input => value.fold(
-        (l) => l.failedValue.toString(),
+  String? get rawInput => value.fold(
+        (l) => l.failedValue?.toString(),
         (r) => r.toString(),
       );
 

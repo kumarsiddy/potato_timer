@@ -13,20 +13,24 @@ class ParentWrapperWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-      child: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 24.r,
-            vertical: 16.r,
-          ),
-          child: Container(
-            constraints: BoxConstraints(
-              minHeight: height,
+    return SafeArea(
+      child: Container(
+        height: height,
+        padding: EdgeInsets.symmetric(
+          horizontal: 24.r,
+          vertical: 16.r,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                child: child,
+              ),
             ),
-            child: child,
-          ),
+          ],
         ),
       ),
     );

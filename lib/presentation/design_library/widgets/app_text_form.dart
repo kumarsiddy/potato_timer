@@ -12,6 +12,7 @@ abstract class _BaseTextForm extends StatelessWidget {
   final TextInputType? textInputType;
   final TextInputAction? inputAction;
   final int? lengthLimit;
+  final int? maxLines;
 
   const _BaseTextForm(
     this.valueObject, {
@@ -22,6 +23,7 @@ abstract class _BaseTextForm extends StatelessWidget {
     this.textInputType,
     this.inputAction,
     this.lengthLimit,
+    this.maxLines,
   });
 
   @override
@@ -31,7 +33,8 @@ abstract class _BaseTextForm extends StatelessWidget {
       textAlignVertical: TextAlignVertical.top,
       keyboardType: textInputType ?? TextInputType.text,
       textInputAction: inputAction ?? TextInputAction.next,
-      initialValue: valueObject?.input,
+      initialValue: valueObject?.rawInput,
+      maxLines: maxLines ?? 1,
       decoration: InputDecoration(
         labelText: labelTextKey?.value ?? '',
         hintText: hintTextKey?.value ?? '',
@@ -46,7 +49,8 @@ abstract class _BaseTextForm extends StatelessWidget {
   String? _getErrorText() {
     if (valueObject == null ||
         valueObject?.isValid == true ||
-        valueObject?.input.isEmpty == true) {
+        valueObject?.rawInput == null ||
+        valueObject?.rawInput?.isEmpty == true) {
       return null;
     }
     return errorTextKey?.value ?? 'Invalid Value';
@@ -63,9 +67,10 @@ class AppTextForm extends _BaseTextForm {
     super.textInputType,
     super.inputAction,
     super.lengthLimit,
+    super.maxLines,
   });
 
-  factory AppTextForm.taskName(
+  factory AppTextForm.taskTitle(
     IValueObject? valueObject, {
     required final ValueChanged<String> onChanged,
     final StringKey? labelTextKey,
@@ -98,6 +103,27 @@ class AppTextForm extends _BaseTextForm {
       errorTextKey: errorTextKey,
       textInputType: TextInputType.name,
       inputAction: TextInputAction.done,
+      maxLines: 5,
+    );
+  }
+
+  factory AppTextForm.duration(
+    IValueObject? valueObject, {
+    required ValueChanged<String> onChanged,
+    final StringKey? labelTextKey,
+    final StringKey? hintTextKey,
+    final StringKey? errorTextKey,
+  }) {
+    return AppTextForm._(
+      valueObject,
+      onChanged: onChanged,
+      labelTextKey: labelTextKey,
+      hintTextKey: hintTextKey,
+      errorTextKey: errorTextKey,
+      inputAction: TextInputAction.done,
+      textInputType: TextInputType.number,
+      maxLines: 1,
+      lengthLimit: 2,
     );
   }
 }
