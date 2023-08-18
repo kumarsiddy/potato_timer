@@ -45,6 +45,7 @@ ThemeData _getCustomThemeData(
       scrolledUnderElevation: 2,
       shadowColor: Theme.of(context).colorScheme.shadow,
     ),
+    buttonTheme: const ButtonThemeData(),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       hintStyle: GoogleFonts.latoTextTheme().bodyMedium,

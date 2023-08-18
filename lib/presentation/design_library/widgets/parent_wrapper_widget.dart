@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:potato_timer/presentation/design_library/design_library.dart';
+import 'package:potato_timer/presentation/design_library/widgets/app_button.dart';
+import 'package:potato_timer/utils/string_keys.dart';
 
 class ParentWrapperWidget extends StatelessWidget {
   final double height;
   final Widget child;
+  final StringKey? buttonText;
+  final VoidCallback? onPressed;
 
   const ParentWrapperWidget({
     super.key,
     required this.height,
     required this.child,
+    this.buttonText,
+    this.onPressed,
   });
 
   @override
@@ -22,6 +28,7 @@ class ParentWrapperWidget extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               child: SingleChildScrollView(
@@ -30,6 +37,11 @@ class ParentWrapperWidget extends StatelessWidget {
                 child: child,
               ),
             ),
+            if (buttonText != null)
+              AppButton.filledButton(
+                buttonText!,
+                onPressed: onPressed,
+              ),
           ],
         ),
       ),

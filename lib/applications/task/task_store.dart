@@ -27,6 +27,12 @@ abstract class _TaskStore extends BaseStore with Store {
   @readonly
   IValueObject<int?>? _secondValueObject;
 
+  @computed
+  Duration get _duration => _getDuration();
+
+  @computed
+  bool get validDuration => _isValidDuration();
+
   @action
   void onTaskNameChange(
     String input,
@@ -60,5 +66,26 @@ abstract class _TaskStore extends BaseStore with Store {
     String input,
   ) {
     _secondValueObject = SecondValueObject(input);
+  }
+
+  @action
+  void onAddTaskButtonClick() {}
+
+  Duration _getDuration() {
+    final hour = _hourValueObject?.value.fold<int?>((l) => null, (r) => r);
+    final minute = _minuteValueObject?.value.fold<int?>((l) => null, (r) => r);
+    final second = _secondValueObject?.value.fold<int?>((l) => null, (r) => r);
+
+    return Duration(
+      hours: hour ?? 0,
+      minutes: minute ?? 0,
+      seconds: second ?? 0,
+    );
+  }
+
+  bool _isValidDuration() {
+    return _taskNameValueObject?.isValid == true &&
+        _taskDescriptionValueObject?.isValid == true &&
+        _duration.inMilliseconds > 0;
   }
 }
