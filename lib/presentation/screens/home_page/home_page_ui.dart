@@ -37,7 +37,6 @@ class _TaskListView extends StatelessWidget {
 
 class _TaskItem extends StatelessWidget {
   const _TaskItem({
-    super.key,
     required this.task,
   });
 

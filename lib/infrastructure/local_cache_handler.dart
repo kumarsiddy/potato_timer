@@ -62,6 +62,8 @@ class LocalCacheHandler implements ILocalCacheHandler {
       final success = await _appDatabase.update(_appDatabase.tasks).replace(
             TasksCompanion(
               id: Value(task.id!),
+              title: Value(task.title),
+              description: Value(task.description),
               elapsedSeconds: Value(task.elapsedSeconds),
             ),
           );

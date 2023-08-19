@@ -5,5 +5,7 @@ abstract class ITaskManager {
 
   Future<void> runUpdatePeriodically();
 
+  Future<void> saveImmediatelyToDb();
+
   void dispose();
 }

@@ -11,7 +11,7 @@ class TaskManager implements ITaskManager {
   TaskManager(this._localCacheHandler);
 
   // periodic time defined in seconds
-  static const int _periodicTimeInSeconds = 15;
+  static const int _periodicTimeInSeconds = 3;
 
   final ILocalCacheHandler _localCacheHandler;
 
@@ -32,30 +32,37 @@ class TaskManager implements ITaskManager {
     _timer ??= Timer.periodic(
       const Duration(seconds: _periodicTimeInSeconds),
       (_) async {
-        final copiedTaskQueue = Queue.of(_taskQueue..clear());
-        final futures = <Future>[];
+        await saveImmediatelyToDb();
+      },
+    );
+  }
 
-        while (copiedTaskQueue.isNotEmpty) {
-          final task = copiedTaskQueue.removeFirst();
+  @override
+  Future<void> saveImmediatelyToDb() async {
+    final copiedTaskQueue = Queue.of(_taskQueue);
+    _taskQueue.clear();
+    final futures = <Future>[];
 
-          // delete if elapsedTime is 0
-          // It means it has been completed
-          if (task.elapsedSeconds == 0) {
-            futures.add(_localCacheHandler.deleteTask(task: task));
-          } else {
-            futures.add(_localCacheHandler.updateTask(task: task));
-          }
-        }
+    while (copiedTaskQueue.isNotEmpty) {
+      final task = copiedTaskQueue.removeFirst();
 
-        Future.wait(futures).then(
-          (List<void> results) {
-            print('All futures completed successfully');
-          },
-        ).catchError(
-          (error) {
-            print('An error occurred: $error');
-          },
-        );
+      // delete if elapsedTime is 0
+      // It means it has been completed
+      if (task.finished) {
+        futures.add(_localCacheHandler.deleteTask(task: task));
+      } else {
+        futures.add(_localCacheHandler.updateTask(task: task));
+      }
+    }
+
+    Future.wait(futures).then(
+      (List results) {
+        print('All futures completed successfully');
+        print(results);
+      },
+    ).catchError(
+      (error) {
+        print('An error occurred: $error');
       },
     );
   }
