@@ -1,4 +1,4 @@
-part of 'base_stateless_widget.dart';
+part of '../../core/base/base_stateless_widget.dart';
 
 class _NoInternetPage extends StatelessWidget {
   @override
@@ -34,7 +34,7 @@ class _GetNoInternetPageState extends State<_GetNoInternetPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AppText.bodyMedium(
-            StringKey.makeSureInternetIsOn,
+            stringKey: StringKey.makeSureInternetIsOn,
           ),
         ],
       ),

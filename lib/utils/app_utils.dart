@@ -26,3 +26,19 @@ T storeOf<T>(
 ) {
   return Provider.of<T>(context, listen: false);
 }
+
+(String, String, String) getFormattedTimeFrom({
+  required int elapsedTimeInSecond,
+}) {
+  String twoDigits(int n) {
+    if (n >= 10) return '$n';
+    return '0$n';
+  }
+
+  final duration = Duration(seconds: elapsedTimeInSecond);
+  final hours = twoDigits(duration.inHours);
+  final minutes = twoDigits(duration.inMinutes.remainder(60));
+  final seconds = twoDigits(duration.inSeconds.remainder(60));
+
+  return (hours, minutes, seconds);
+}

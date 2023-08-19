@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 enum AppColor {
   // Primary Colors
   primary(Color(0xFF216C2E)),
-  primaryLight(Color(0xFFE5EEF8)),
+  primaryLight(Color(0xFF006782)),
 
   // Other Colors
   white(Colors.white),
+  offWhite(Color(0xffdae9f1)),
   red(Colors.red),
   green(Colors.green),
   grey(Colors.grey),

@@ -20,7 +20,7 @@ abstract class _BaseButton extends StatelessWidget {
     return FilledButton(
       onPressed: onPressed,
       child: AppText.bodyMedium(
-        stringKey,
+        stringKey: stringKey,
         color: AppColor.white,
       ),
     );
@@ -29,7 +29,6 @@ abstract class _BaseButton extends StatelessWidget {
 
 class AppButton extends _BaseButton {
   const AppButton._({
-    super.key,
     required super.stringKey,
     required super.onPressed,
   });

@@ -63,7 +63,7 @@ class DoublePressToExitState extends State<DoublePressToExit> {
     BuildContext context,
   ) {
     return SnackBar(
-      content: AppText.bodyMedium(StringKey.pressBackToExit),
+      content: AppText.bodyMedium(stringKey: StringKey.pressBackToExit),
       backgroundColor: AppColor.red.value,
       duration: const Duration(
         seconds: 2,

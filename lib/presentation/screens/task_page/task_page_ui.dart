@@ -51,7 +51,7 @@ class _DurationSelectorWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppText.bodyMedium(StringKey.duration),
+            AppText.bodyMedium(stringKey: StringKey.duration),
             Gap(8.r),
             Row(
               children: [

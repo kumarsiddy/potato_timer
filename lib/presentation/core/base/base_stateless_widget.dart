@@ -7,7 +7,6 @@ import 'package:mobx/mobx.dart';
 import 'package:potato_timer/applications/base/base_store.dart';
 import 'package:potato_timer/di/injection.dart';
 import 'package:potato_timer/domain/models/models.dart';
-import 'package:potato_timer/presentation/core/base/app_life_cycle_observer.dart';
 import 'package:potato_timer/presentation/core/base/size_config.dart';
 import 'package:potato_timer/presentation/design_library/design_library.dart';
 import 'package:potato_timer/utils/app_utils.dart';
@@ -15,9 +14,9 @@ import 'package:potato_timer/utils/string_keys.dart';
 import 'package:potato_timer/utils/typedef.dart';
 import 'package:provider/provider.dart';
 
-part 'base_stateful_widget.dart';
+part '../../design_library/screens/no_internet_page.dart';
 
-part 'no_internet_page.dart';
+part 'base_stateful_widget.dart';
 
 abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
     with RouteAware {

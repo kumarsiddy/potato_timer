@@ -17,6 +17,32 @@ abstract class _HomePageStore extends BaseStore with Store {
 
   final ILocalCacheHandler _localCacheHandler;
 
-  final ObservableList<PotatoTimerTask> tasks =
-      ObservableList<PotatoTimerTask>();
+  @observable
+  ObservableList<PotatoTimerTask> tasks = ObservableList<PotatoTimerTask>();
+
+  @override
+  Future<void> init(
+    Map<String, dynamic>? args,
+  ) async {
+    await _getAllTasks();
+    return super.init(args);
+  }
+
+  @action
+  Future<void> _getAllTasks() async {
+    showLoader();
+
+    final allTasksOrFailure = await _localCacheHandler.getAllSavedTasks();
+    allTasksOrFailure.fold(
+      handleException,
+      (result) {
+        // clearing if any data is before there
+        // then adding it
+        tasks
+          ..clear()
+          ..addAll(result);
+        hideLoader();
+      },
+    );
+  }
 }

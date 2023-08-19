@@ -5,6 +5,7 @@ PotatoTimerTask getTaskFromInfraDto(
   Task task,
 ) {
   return PotatoTimerTask(
+    id: task.id,
     title: task.title,
     description: task.description,
     elapsedSeconds: task.elapsedSeconds,

@@ -4,9 +4,10 @@ import 'package:potato_timer/presentation/design_library/app_color.dart';
 import 'package:potato_timer/utils/string_keys.dart';
 
 abstract class _BaseText extends StatelessWidget {
-  const _BaseText(
-    this.stringKey, {
+  const _BaseText({
+    this.stringKey,
     required this.type,
+    this.text,
     this.color,
     this.height,
     this.maxLines,
@@ -14,7 +15,8 @@ abstract class _BaseText extends StatelessWidget {
     this.overflow,
   });
 
-  final StringKey stringKey;
+  final StringKey? stringKey;
+  final String? text;
   final AppColor? color;
   final double? height;
   final int? maxLines;
@@ -27,7 +29,7 @@ abstract class _BaseText extends StatelessWidget {
     BuildContext context,
   ) {
     return AutoSizeText(
-      stringKey.value,
+      stringKey?.value ?? text ?? '',
       style: _getStyleBasedOnType(
         context,
         type: type,
@@ -82,9 +84,10 @@ abstract class _BaseText extends StatelessWidget {
 }
 
 class AppText extends _BaseText {
-  const AppText._(
-    super.stringKey, {
+  const AppText._({
     required super.type,
+    super.stringKey,
+    super.text,
     super.color,
     super.height,
     super.maxLines,
@@ -92,122 +95,143 @@ class AppText extends _BaseText {
     super.overflow,
   });
 
-  factory AppText.displayLarge(
-    StringKey stringKey, {
+  factory AppText.displayLarge({
+    StringKey? stringKey,
+    String? text,
     AppColor? color,
   }) {
     return AppText._(
-      stringKey,
+      stringKey: stringKey,
+      text: text,
       type: _TextType.displayLarge,
       color: color,
       maxLines: 1,
     );
   }
 
-  factory AppText.displayMedium(
-    StringKey stringKey, {
+  factory AppText.displayMedium({
+    StringKey? stringKey,
+    String? text,
     AppColor? color,
   }) {
     return AppText._(
-      stringKey,
+      stringKey: stringKey,
+      text: text,
       type: _TextType.displayMedium,
       color: color,
       maxLines: 1,
     );
   }
 
-  factory AppText.displaySmall(
-    StringKey stringKey, {
+  factory AppText.displaySmall({
+    StringKey? stringKey,
+    String? text,
     AppColor? color,
   }) {
     return AppText._(
-      stringKey,
+      stringKey: stringKey,
+      text: text,
       type: _TextType.displaySmall,
       color: color,
       maxLines: 1,
     );
   }
 
-  factory AppText.headlineLarge(
-    StringKey stringKey, {
+  factory AppText.headlineLarge({
+    StringKey? stringKey,
+    String? text,
     AppColor? color,
   }) {
     return AppText._(
-      stringKey,
+      stringKey: stringKey,
+      text: text,
       type: _TextType.headlineLarge,
       color: color,
       maxLines: 1,
     );
   }
 
-  factory AppText.headlineMedium(
-    StringKey stringKey, {
+  factory AppText.headlineMedium({
+    StringKey? stringKey,
+    String? text,
     AppColor? color,
   }) {
     return AppText._(
-      stringKey,
+      stringKey: stringKey,
+      text: text,
       type: _TextType.headlineMedium,
       color: color,
       maxLines: 1,
     );
   }
 
-  factory AppText.headlineSmall(
-    StringKey stringKey, {
+  factory AppText.headlineSmall({
+    StringKey? stringKey,
+    String? text,
     AppColor? color,
   }) {
     return AppText._(
-      stringKey,
+      stringKey: stringKey,
+      text: text,
       type: _TextType.headlineSmall,
       color: color,
       maxLines: 1,
     );
   }
 
-  factory AppText.titleLarge(
-    StringKey stringKey, {
+  factory AppText.titleLarge({
+    StringKey? stringKey,
+    String? text,
     AppColor? color,
   }) {
     return AppText._(
-      stringKey,
+      stringKey: stringKey,
+      text: text,
       type: _TextType.titleLarge,
       color: color,
       maxLines: 1,
     );
   }
 
-  factory AppText.titleMedium(
-    StringKey stringKey, {
+  factory AppText.titleMedium({
+    StringKey? stringKey,
+    String? text,
     AppColor? color,
   }) {
     return AppText._(
-      stringKey,
+      stringKey: stringKey,
+      text: text,
       type: _TextType.titleMedium,
       color: color,
       maxLines: 1,
     );
   }
 
-  factory AppText.titleSmall(
-    StringKey stringKey, {
+  factory AppText.titleSmall({
+    StringKey? stringKey,
+    String? text,
     AppColor? color,
   }) {
     return AppText._(
-      stringKey,
+      stringKey: stringKey,
+      text: text,
       type: _TextType.titleSmall,
       color: color,
       maxLines: 1,
     );
   }
 
-  factory AppText.bodyMedium(
-    StringKey stringKey, {
+  factory AppText.bodyMedium({
+    StringKey? stringKey,
+    String? text,
     AppColor? color,
   }) {
     return AppText._(
-      stringKey,
+      stringKey: stringKey,
+      text: text,
       type: _TextType.bodyMedium,
       color: color,
+      maxLines: 12,
     );
   }
 }

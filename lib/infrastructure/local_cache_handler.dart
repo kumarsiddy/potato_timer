@@ -6,6 +6,7 @@ import 'package:potato_timer/domain/i_local_cache_handler.dart';
 import 'package:potato_timer/domain/models/models.dart';
 import 'package:potato_timer/infrastructure/database/app_database.dart';
 import 'package:potato_timer/infrastructure/exceptions.dart';
+import 'package:potato_timer/layer_bridge/infra_to_domain.dart';
 
 @Injectable(as: ILocalCacheHandler)
 class LocalCacheHandler implements ILocalCacheHandler {
@@ -35,11 +36,6 @@ class LocalCacheHandler implements ILocalCacheHandler {
     }
   }
 
-  // @override
-  // Future<Either<IAppException, bool>> deleteAllTasks({
-  //   required List<PotatoTimerTask> tasks,
-  // }) async {}
-
   @override
   Future<Either<IAppException, bool>> deleteTask({
     required PotatoTimerTask task,
@@ -58,11 +54,6 @@ class LocalCacheHandler implements ILocalCacheHandler {
     }
   }
 
-  // @override
-  // Future<Either<IAppException, bool>> updateAllTasks({
-  //   required List<PotatoTimerTask> tasks,
-  // }) {}
-
   @override
   Future<Either<IAppException, bool>> updateTask({
     required PotatoTimerTask task,
@@ -75,6 +66,21 @@ class LocalCacheHandler implements ILocalCacheHandler {
             ),
           );
       return right(success);
+    } on Exception catch (_) {
+      return left(
+        RecognizedException('Something went Wrong...'),
+      );
+    }
+  }
+
+  @override
+  Future<Either<IAppException, List<PotatoTimerTask>>>
+      getAllSavedTasks() async {
+    try {
+      final tasksFromDb = await _appDatabase.select(_appDatabase.tasks).get();
+      final tasks = tasksFromDb.map(getTaskFromInfraDto).toList();
+
+      return right(tasks);
     } on Exception catch (_) {
       return left(
         RecognizedException('Something went Wrong...'),

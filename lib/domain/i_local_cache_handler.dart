@@ -11,15 +11,9 @@ abstract class ILocalCacheHandler {
     required PotatoTimerTask task,
   });
 
-  // Future<Either<IAppException, bool>> updateAllTasks({
-  //   required List<PotatoTimerTask> tasks,
-  // });
+  Future<Either<IAppException, List<PotatoTimerTask>>> getAllSavedTasks();
 
   Future<Either<IAppException, bool>> deleteTask({
     required PotatoTimerTask task,
   });
-
-// Future<Either<Exception, bool>> deleteAllTasks({
-//   required List<PotatoTimerTask> tasks,
-// });
 }

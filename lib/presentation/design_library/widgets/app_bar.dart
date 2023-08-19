@@ -22,7 +22,7 @@ abstract class _BaseAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       title: AppText.titleLarge(
-        stringKey ?? StringKey.empty,
+        stringKey: stringKey,
         color: AppColor.white,
       ),
       leading: Navigator.canPop(context) && (backButtonRequired == true)

@@ -15,7 +15,7 @@ class _SplashUI extends StatelessWidget {
             height: 180.h,
           ),
           Gap(32.r),
-          AppText.displayLarge(StringKey.potatoTimer),
+          AppText.displayLarge(stringKey: StringKey.potatoTimer),
         ],
       ),
     );
