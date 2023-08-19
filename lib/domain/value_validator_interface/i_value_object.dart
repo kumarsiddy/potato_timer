@@ -15,7 +15,7 @@ abstract class IValueObject<T> {
 
   bool get isValid => value.isRight();
 
-  T getOrCrash() {
+  T getOrException() {
     return value.fold(
       (failure) => throw FormatException(failure.failedValue.toString()),
       (r) => r,

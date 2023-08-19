@@ -39,8 +39,6 @@ abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
       child: _BaseStatefulWidget(
         baseStore: childStore,
         onStart: onStart,
-        onResume: onResume,
-        onSuspend: onSuspend,
         onDestroy: onDestroy,
         onConnectivityChange: onConnectivityChange,
         args: argsFromPreviousRoute,
@@ -90,16 +88,6 @@ abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
       },
     );
   }
-
-  /// This is lifecycle call for the app, not for this widget
-  Future<void> onResume(
-    BuildContext context,
-  ) async {}
-
-  /// This is lifecycle call for the app, not for this widget
-  Future<void> onSuspend(
-    BuildContext context,
-  ) async {}
 
   /// This method will be called when widget will be destroyed
   Future<void> onDestroy(

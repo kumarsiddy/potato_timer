@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:potato_timer/di/injection.dart';
+import 'package:potato_timer/domain/i_task_manager.dart';
+import 'package:potato_timer/presentation/core/base/app_life_cycle_observer.dart';
 import 'package:potato_timer/presentation/core/router/router.dart';
 import 'package:potato_timer/presentation/design_library/design_library.dart';
 
@@ -10,8 +13,50 @@ import 'package:potato_timer/presentation/design_library/design_library.dart';
 final GlobalKey<NavigatorState> globalNavigatorKey =
     GlobalKey<NavigatorState>();
 
-class PotatoTimerApp extends StatelessWidget {
+class PotatoTimerApp extends StatefulWidget {
   const PotatoTimerApp({super.key});
+
+  @override
+  State<PotatoTimerApp> createState() => _PotatoTimerAppState();
+}
+
+class _PotatoTimerAppState extends State<PotatoTimerApp> {
+  late final AppLifeCycleObserver _appLifeCycleObserver;
+  late final ITaskManager _taskManager;
+
+  @override
+  void initState() {
+    initAppLifecycle();
+    _taskManager = getIt<ITaskManager>()..runUpdatePeriodically();
+    super.initState();
+  }
+
+  void initAppLifecycle() {
+    _appLifeCycleObserver = AppLifeCycleObserver(
+      onPause: onPause,
+      onResume: onResume,
+      onInactive: onInactive,
+      onDetached: onDetach,
+    );
+
+    WidgetsBinding.instance.addObserver(
+      _appLifeCycleObserver,
+    );
+  }
+
+  /// App is being paused (minimized or put in the background)
+  Future<void> onPause() async {}
+
+  /// App is being resumed (brought back to the foreground)
+  Future<void> onResume() async {}
+
+  // App is transitioning between states
+  Future<void> onInactive() async {}
+
+  // App is being terminated or detached
+  Future<void> onDetach() async {
+    _taskManager.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +72,15 @@ class PotatoTimerApp extends StatelessWidget {
         initialRoute: RouteId.splash.name,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(
+      _appLifeCycleObserver,
+    );
+
+    super.dispose();
   }
 }
 

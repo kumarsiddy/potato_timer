@@ -6,8 +6,6 @@ class _BaseStatefulWidget extends StatefulWidget {
     required this.baseStore,
     required this.builder,
     required this.onStart,
-    required this.onResume,
-    required this.onSuspend,
     required this.onDestroy,
     required this.onConnectivityChange,
     this.args,
@@ -15,8 +13,6 @@ class _BaseStatefulWidget extends StatefulWidget {
 
   final WidgetBuilderCallback builder;
   final BuildContextCallback onStart;
-  final BuildContextCallback onResume;
-  final BuildContextCallback onSuspend;
   final BuildContextCallback onDestroy;
   final Function onConnectivityChange;
   final Map<String, dynamic>? args;
@@ -27,24 +23,8 @@ class _BaseStatefulWidget extends StatefulWidget {
 }
 
 class _BaseStatefulWidgetState extends State<_BaseStatefulWidget> {
-  late final AppLifeCycleObserver _appLifeCycleObserver;
-
   @override
   void initState() {
-    _appLifeCycleObserver = AppLifeCycleObserver(
-      suspendingCallBack: () async {
-        widget.onSuspend.call(context);
-      },
-      resumeCallBack: () async {
-        if (!mounted) return;
-        widget.onResume.call(context);
-      },
-    );
-
-    WidgetsBinding.instance.addObserver(
-      _appLifeCycleObserver,
-    );
-
     widget.onStart.call(context);
     super.initState();
   }
@@ -75,9 +55,6 @@ class _BaseStatefulWidgetState extends State<_BaseStatefulWidget> {
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(
-      _appLifeCycleObserver,
-    );
     widget.onDestroy.call(context);
     super.dispose();
   }

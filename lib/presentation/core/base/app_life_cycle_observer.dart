@@ -5,24 +5,30 @@ import 'package:flutter/material.dart';
 /// lifecycle of the app
 class AppLifeCycleObserver extends WidgetsBindingObserver {
   AppLifeCycleObserver({
-    required this.resumeCallBack,
-    required this.suspendingCallBack,
+    required this.onPause,
+    required this.onResume,
+    required this.onInactive,
+    required this.onDetached,
   });
 
-  final AsyncCallback resumeCallBack;
-  final AsyncCallback suspendingCallBack;
+  final AsyncCallback onPause;
+  final AsyncCallback onResume;
+  final AsyncCallback onInactive;
+  final AsyncCallback onDetached;
 
   @override
-  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
+  Future<void> didChangeAppLifecycleState(
+    AppLifecycleState state,
+  ) async {
     switch (state) {
-      case AppLifecycleState.resumed:
-        await resumeCallBack();
-        break;
-      case AppLifecycleState.inactive:
       case AppLifecycleState.paused:
+        onPause();
+      case AppLifecycleState.resumed:
+        onResume();
+      case AppLifecycleState.inactive:
+        onInactive();
       case AppLifecycleState.detached:
-        await suspendingCallBack();
-        break;
+        onDetached();
     }
   }
 }

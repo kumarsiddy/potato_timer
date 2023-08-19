@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 import 'package:potato_timer/applications/base/base_store.dart';
-import 'package:potato_timer/domain/i_task_handler_facade.dart';
+import 'package:potato_timer/domain/i_local_cache_handler.dart';
 import 'package:potato_timer/domain/models/models.dart';
 import 'package:potato_timer/domain/value_validator_interface/i_value_object.dart';
 import 'package:potato_timer/infrastructure/value_validators/value_objects.dart';
@@ -14,10 +14,10 @@ class TaskStore = _TaskStore with _$TaskStore;
 abstract class _TaskStore extends BaseStore with Store {
   _TaskStore(
     super.connectionAwareFacade,
-    this._taskHandlerFacade,
+    this._localCacheHandler,
   );
 
-  final ITaskHandlerFacade _taskHandlerFacade;
+  final ILocalCacheHandler _localCacheHandler;
 
   @readonly
   IValueObject<String>? _taskTitleValueObject;
@@ -82,12 +82,11 @@ abstract class _TaskStore extends BaseStore with Store {
   Future<void> onAddTaskButtonClick() async {
     showLoader();
 
-    final finishAt = DateTime.now().add(_duration);
-    final saveTaskOrFailure = await _taskHandlerFacade.addTask(
+    final saveTaskOrFailure = await _localCacheHandler.addTask(
       task: PotatoTimerTask(
-        title: _taskTitleValueObject!.getOrCrash(),
-        description: _taskDescriptionValueObject!.getOrCrash(),
-        finishAt: finishAt,
+        title: _taskTitleValueObject!.getOrException(),
+        description: _taskDescriptionValueObject!.getOrException(),
+        elapsedSeconds: _duration.inSeconds,
       ),
     );
 

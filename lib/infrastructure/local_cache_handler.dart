@@ -2,14 +2,14 @@ import 'package:dartz/dartz.dart';
 import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
 import 'package:potato_timer/domain/i_exceptions.dart';
-import 'package:potato_timer/domain/i_task_handler_facade.dart';
+import 'package:potato_timer/domain/i_local_cache_handler.dart';
 import 'package:potato_timer/domain/models/models.dart';
 import 'package:potato_timer/infrastructure/database/app_database.dart';
 import 'package:potato_timer/infrastructure/exceptions.dart';
 
-@Injectable(as: ITaskHandlerFacade)
-class TaskHandlerFacade extends ITaskHandlerFacade {
-  TaskHandlerFacade(
+@Injectable(as: ILocalCacheHandler)
+class LocalCacheHandler implements ILocalCacheHandler {
+  LocalCacheHandler(
     this._appDatabase,
   );
 
@@ -24,7 +24,7 @@ class TaskHandlerFacade extends ITaskHandlerFacade {
             TasksCompanion.insert(
               title: task.title,
               description: task.description,
-              finishAt: task.finishAt,
+              elapsedSeconds: task.elapsedSeconds,
             ),
           );
       return right(true);
@@ -71,7 +71,7 @@ class TaskHandlerFacade extends ITaskHandlerFacade {
       final success = await _appDatabase.update(_appDatabase.tasks).replace(
             TasksCompanion(
               id: Value(task.id!),
-              finishAt: Value(task.finishAt),
+              elapsedSeconds: Value(task.elapsedSeconds),
             ),
           );
       return right(success);

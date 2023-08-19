@@ -9,5 +9,5 @@ class Tasks extends Table {
 
   TextColumn get description => text().withLength(min: 6, max: 120)();
 
-  DateTimeColumn get finishAt => dateTime()();
+  IntColumn get elapsedSeconds => integer()();
 }

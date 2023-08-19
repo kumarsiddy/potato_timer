@@ -23,16 +23,11 @@ class ConnectionAwareFacade implements IConnectionAwareFacade {
   /// but should be enough. See https://www.dnsperf.com/#!dns-resolvers
   ///
   /// Addresses info:
-  ///
-  /// <!-- kinda hackish ^_^ -->
   /// | Address        | Provider   | Info                                            |
   /// |:---------------|:-----------|:------------------------------------------------|
   /// | 1.1.1.1        | CloudFlare | https://1.1.1.1                                 |
-  /// | 1.0.0.1        | CloudFlare | https://1.1.1.1                                 |
-  /// | 8.8.8.8        | Google     | https://developers.google.com/speed/public-dns/ |
   /// | 8.8.4.4        | Google     | https://developers.google.com/speed/public-dns/ |
   /// | 208.67.222.222 | OpenDNS    | https://use.opendns.com/                        |
-  /// | 208.67.220.220 | OpenDNS    | https://use.opendns.com/                        |
   static final List<_AddressCheckOptions> _defaultAddresses =
       List.unmodifiable([
     _AddressCheckOptions(
