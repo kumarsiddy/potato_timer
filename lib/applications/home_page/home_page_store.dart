@@ -123,7 +123,7 @@ abstract class _HomePageStore extends BaseStore with Store {
   }
 
   @action
-  void togglePauseResumeOnTask(
+  void togglePauseResumeTask(
     PotatoTimerTask task,
   ) {
     final index = tasks.indexWhere((element) => element.id == task.id);
@@ -131,12 +131,13 @@ abstract class _HomePageStore extends BaseStore with Store {
   }
 
   @action
-  void stopTask(
+  Future<void> stopTask(
     PotatoTimerTask task,
-  ) {
+  ) async {
     _removeTask(task.id!);
     // Sending this task to Queue
     _taskManager.addToQueue(task.copyWith(finished: true));
+    await _pauseAlert();
   }
 
   void _removeTask(int id) {

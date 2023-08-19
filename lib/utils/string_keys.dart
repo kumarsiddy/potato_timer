@@ -1,4 +1,5 @@
 enum StringKey {
+  markComplete('Mark Complete'),
   finished('FINISHED'),
   hour('Hour'),
   minute('Minute'),

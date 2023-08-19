@@ -2,7 +2,7 @@ enum AppAssetSource {
   soundWave('assets/icons/sound_wave.png'),
   alert('sounds/alert.mp3'),
   pause('assets/icons/pause.png'),
-  resume('assets/icons/resume.png'),
+  play('assets/icons/play.png'),
   stop('assets/icons/stop.png'),
   cross('assets/icons/cross.svg'),
   tick('assets/icons/tick.svg'),

@@ -46,7 +46,6 @@ class TaskManager implements ITaskManager {
     while (copiedTaskQueue.isNotEmpty) {
       final task = copiedTaskQueue.removeFirst();
 
-      // delete if elapsedTime is 0
       // It means it has been completed
       if (task.finished) {
         futures.add(_localCacheHandler.deleteTask(task: task));

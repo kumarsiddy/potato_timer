@@ -15,7 +15,6 @@ class _HomePageUI extends StatelessWidget {
 
 class _TaskListView extends StatelessWidget {
   const _TaskListView({
-    super.key,
     required this.tasks,
   });
 
@@ -54,7 +53,7 @@ class _TaskItem extends StatelessWidget {
             _TaskCompletionView()
           else
             _TaskInteractionView(
-              elapsedSeconds: task.elapsedSeconds,
+              task: task,
             ),
           Gap(4.r),
           Padding(
@@ -65,7 +64,14 @@ class _TaskItem extends StatelessWidget {
             padding: EdgeInsets.only(left: 24.r),
             child: AppText.bodyMedium(text: task.description),
           ),
-          Gap(36.r),
+          Gap(12.r),
+          if (task.finished)
+            AppButton.filledButton(
+              StringKey.markComplete,
+              onPressed: () => storeOf<HomePageStore>(context).stopTask(task),
+            )
+          else
+            Gap(24.r),
         ],
       ),
     );
@@ -74,11 +80,10 @@ class _TaskItem extends StatelessWidget {
 
 class _TaskInteractionView extends StatelessWidget {
   const _TaskInteractionView({
-    super.key,
-    required this.elapsedSeconds,
+    required this.task,
   });
 
-  final int elapsedSeconds;
+  final PotatoTimerTask task;
 
   @override
   Widget build(BuildContext context) {
@@ -86,8 +91,8 @@ class _TaskInteractionView extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        _DurationView(elapsedSeconds: elapsedSeconds),
-        _InteractiveButtons(),
+        _DurationView(elapsedSeconds: task.elapsedSeconds),
+        _InteractiveButtons(task),
       ],
     );
   }
@@ -121,8 +126,14 @@ class _DurationView extends StatelessWidget {
 }
 
 class _InteractiveButtons extends StatelessWidget {
+  const _InteractiveButtons(this.task);
+
+  final PotatoTimerTask task;
+
   @override
   Widget build(BuildContext context) {
+    final store = storeOf<HomePageStore>(context);
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -130,13 +141,15 @@ class _InteractiveButtons extends StatelessWidget {
         Row(
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () => store.togglePauseResumeTask(task),
               icon: ImageIcon(
-                AssetImage(AppAssetSource.pause.path),
+                task.paused
+                    ? AssetImage(AppAssetSource.play.path)
+                    : AssetImage(AppAssetSource.pause.path),
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () => store.stopTask(task),
               icon: ImageIcon(
                 AssetImage(AppAssetSource.stop.path),
               ),
@@ -158,9 +171,9 @@ class _TaskCompletionView extends StatelessWidget {
           assetSource: AppAssetSource.soundWave,
           height: 64.h,
         ),
-        Gap(24.r),
+        Gap(16.r),
         AppText.headlineLarge(stringKey: StringKey.finished),
-        Gap(24.r),
+        Gap(16.r),
         AppImage(
           assetSource: AppAssetSource.soundWave,
           height: 64.h,

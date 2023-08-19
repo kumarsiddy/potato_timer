@@ -6,6 +6,7 @@ import 'package:potato_timer/domain/models/models.dart';
 import 'package:potato_timer/presentation/core/base/base_stateless_widget.dart';
 import 'package:potato_timer/presentation/core/router/router.dart';
 import 'package:potato_timer/presentation/design_library/design_library.dart';
+import 'package:potato_timer/presentation/design_library/widgets/app_button.dart';
 import 'package:potato_timer/utils/utils.dart';
 
 part 'home_page_ui.dart';
