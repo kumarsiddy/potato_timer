@@ -1,4 +1,5 @@
 enum StringKey {
+  finished('FINISHED'),
   hour('Hour'),
   minute('Minute'),
   second('Second'),

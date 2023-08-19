@@ -1,13 +1,13 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:potato_timer/presentation/design_library/design_library.dart';
-import 'package:potato_timer/utils/image_assets.dart';
+import 'package:potato_timer/utils/app_asset_source.dart';
 import 'package:potato_timer/utils/typedef.dart';
 
 Flushbar _getFlushBar(
   BuildContext context,
   String message, {
-  required ImageAsset imageAsset,
+  required AppAssetSource assetSource,
   required AppColor backgroundColor,
   int? durationInSeconds,
   bool? dismissible,
@@ -18,7 +18,7 @@ Flushbar _getFlushBar(
     isDismissible: dismissible ?? true,
     message: message,
     icon: AppImage.snackIcon(
-      imageAsset: imageAsset,
+      assetSource: assetSource,
     ),
     duration: (dismissible ?? true)
         ? Duration(seconds: durationInSeconds ?? 2)
@@ -42,7 +42,7 @@ Flushbar _getFlushBar(
         }
       },
       child: AppImage(
-        imageAsset: ImageAsset.cross,
+        assetSource: AppAssetSource.cross,
         height: 15.h,
         width: 15.h,
       ),
@@ -60,7 +60,7 @@ Flushbar _getFlushBar(
 Future<void> _show(
   BuildContext context,
   String message, {
-  required ImageAsset imageAsset,
+  required AppAssetSource assetSource,
   required AppColor backgroundColor,
   int? durationInSeconds,
   bool? dismissible,
@@ -70,7 +70,7 @@ Future<void> _show(
     context,
     message,
     durationInSeconds: durationInSeconds,
-    imageAsset: imageAsset,
+    assetSource: assetSource,
     backgroundColor: backgroundColor,
     dismissible: dismissible,
     onCloseListener: onCloseListener,
@@ -89,7 +89,7 @@ Future<void> showInfoSnackbar(
     message,
     dismissible: dismissible,
     backgroundColor: AppColor.green,
-    imageAsset: ImageAsset.tick,
+    assetSource: AppAssetSource.tick,
     onCloseListener: onCloseListener,
   );
 }
@@ -105,7 +105,7 @@ Future<void> showErrorSnackbar(
     message,
     dismissible: dismissible,
     backgroundColor: AppColor.red,
-    imageAsset: ImageAsset.info,
+    assetSource: AppAssetSource.info,
     onCloseListener: onCloseListener,
   );
 }

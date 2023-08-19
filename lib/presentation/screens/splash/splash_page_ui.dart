@@ -11,7 +11,7 @@ class _SplashUI extends StatelessWidget {
         children: [
           Gap(184.r),
           AppImage(
-            imageAsset: ImageAsset.splash,
+            assetSource: AppAssetSource.splash,
             height: 180.h,
           ),
           Gap(32.r),

@@ -50,14 +50,12 @@ class _TaskItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              _DurationView(elapsedSeconds: task.elapsedSeconds),
-              _InteractiveButtons(),
-            ],
-          ),
+          if (task.finished)
+            _TaskCompletionView()
+          else
+            _TaskInteractionView(
+              elapsedSeconds: task.elapsedSeconds,
+            ),
           Gap(4.r),
           Padding(
             padding: EdgeInsets.only(top: 12.r, left: 24.r),
@@ -74,9 +72,29 @@ class _TaskItem extends StatelessWidget {
   }
 }
 
+class _TaskInteractionView extends StatelessWidget {
+  const _TaskInteractionView({
+    super.key,
+    required this.elapsedSeconds,
+  });
+
+  final int elapsedSeconds;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        _DurationView(elapsedSeconds: elapsedSeconds),
+        _InteractiveButtons(),
+      ],
+    );
+  }
+}
+
 class _DurationView extends StatelessWidget {
   const _DurationView({
-    super.key,
     required this.elapsedSeconds,
   });
 
@@ -114,17 +132,39 @@ class _InteractiveButtons extends StatelessWidget {
             IconButton(
               onPressed: () {},
               icon: ImageIcon(
-                AssetImage(ImageAsset.pause.path),
+                AssetImage(AppAssetSource.pause.path),
               ),
             ),
             IconButton(
               onPressed: () {},
               icon: ImageIcon(
-                AssetImage(ImageAsset.stop.path),
+                AssetImage(AppAssetSource.stop.path),
               ),
             ),
           ],
         )
+      ],
+    );
+  }
+}
+
+class _TaskCompletionView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        AppImage(
+          assetSource: AppAssetSource.soundWave,
+          height: 64.h,
+        ),
+        Gap(24.r),
+        AppText.headlineLarge(stringKey: StringKey.finished),
+        Gap(24.r),
+        AppImage(
+          assetSource: AppAssetSource.soundWave,
+          height: 64.h,
+        ),
       ],
     );
   }

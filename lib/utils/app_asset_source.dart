@@ -1,4 +1,6 @@
-enum ImageAsset {
+enum AppAssetSource {
+  soundWave('assets/icons/sound_wave.png'),
+  alert('sounds/alert.mp3'),
   pause('assets/icons/pause.png'),
   resume('assets/icons/resume.png'),
   stop('assets/icons/stop.png'),
@@ -9,5 +11,5 @@ enum ImageAsset {
 
   final String path;
 
-  const ImageAsset(this.path);
+  const AppAssetSource(this.path);
 }

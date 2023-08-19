@@ -1,48 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:potato_timer/presentation/design_library/design_library.dart';
-import 'package:potato_timer/utils/image_assets.dart';
+import 'package:potato_timer/utils/app_asset_source.dart';
 
 abstract class _BaseImage extends StatelessWidget {
   const _BaseImage({
     Key? key,
-    required this.imageAsset,
+    required this.assetSource,
     required this.height,
     required this.width,
   }) : super(key: key);
 
-  final ImageAsset imageAsset;
+  final AppAssetSource assetSource;
   final double height;
   final double width;
 
   @override
   Widget build(BuildContext context) {
-    if (Uri.tryParse(imageAsset.path)?.hasAbsolutePath ?? false) {
-      if (imageAsset.path.endsWith('.svg')) {
+    if (Uri.tryParse(assetSource.path)?.hasAbsolutePath ?? false) {
+      if (assetSource.path.endsWith('.svg')) {
         return SvgPicture.network(
-          imageAsset.path,
+          assetSource.path,
           height: height,
           width: width,
         );
       }
 
       return Image.network(
-        imageAsset.path,
+        assetSource.path,
         height: height,
         width: width,
       );
     }
 
-    if (imageAsset.path.endsWith('.svg')) {
+    if (assetSource.path.endsWith('.svg')) {
       return SvgPicture.asset(
-        imageAsset.path,
+        assetSource.path,
         height: height,
         width: width,
       );
     }
 
     return Image.asset(
-      imageAsset.path,
+      assetSource.path,
       height: height,
       width: width,
     );
@@ -52,7 +52,7 @@ abstract class _BaseImage extends StatelessWidget {
 class AppImage extends _BaseImage {
   const AppImage({
     super.key,
-    required super.imageAsset,
+    required super.assetSource,
     required super.height,
     double? width,
   }) : super(
@@ -60,20 +60,20 @@ class AppImage extends _BaseImage {
         );
 
   factory AppImage.dialogIcon({
-    required final ImageAsset imageAsset,
+    required final AppAssetSource assetSource,
   }) {
     return AppImage(
-      imageAsset: imageAsset,
+      assetSource: assetSource,
       height: 64.r,
       width: 64.r,
     );
   }
 
   factory AppImage.snackIcon({
-    required final ImageAsset imageAsset,
+    required final AppAssetSource assetSource,
   }) {
     return AppImage(
-      imageAsset: imageAsset,
+      assetSource: assetSource,
       height: 36.r,
       width: 36.r,
     );
