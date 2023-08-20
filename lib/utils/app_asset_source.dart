@@ -4,10 +4,10 @@ enum AppAssetSource {
   pause('assets/icons/pause.png'),
   play('assets/icons/play.png'),
   stop('assets/icons/stop.png'),
-  cross('assets/icons/cross.svg'),
-  tick('assets/icons/tick.svg'),
-  info('assets/icons/info.svg'),
-  splash('assets/images/splash.svg');
+  cross('assets/icons/cross.png'),
+  tick('assets/icons/tick.png'),
+  info('assets/icons/info.png'),
+  splash('assets/images/splash.png');
 
   final String path;
 

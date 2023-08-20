@@ -11,7 +11,7 @@ class TaskManager implements ITaskManager {
   TaskManager(this._localCacheHandler);
 
   // periodic time defined in seconds
-  static const int _periodicTimeInSeconds = 3;
+  static const int _periodicTimeInSeconds = 6;
 
   final ILocalCacheHandler _localCacheHandler;
 

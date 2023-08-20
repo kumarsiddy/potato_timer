@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:potato_timer/presentation/design_library/design_library.dart';
 import 'package:potato_timer/utils/app_asset_source.dart';
 
@@ -18,23 +17,7 @@ abstract class _BaseImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (Uri.tryParse(assetSource.path)?.hasAbsolutePath ?? false) {
-      if (assetSource.path.endsWith('.svg')) {
-        return SvgPicture.network(
-          assetSource.path,
-          height: height,
-          width: width,
-        );
-      }
-
       return Image.network(
-        assetSource.path,
-        height: height,
-        width: width,
-      );
-    }
-
-    if (assetSource.path.endsWith('.svg')) {
-      return SvgPicture.asset(
         assetSource.path,
         height: height,
         width: width,
