@@ -15,7 +15,7 @@ class ConnectionStatus {
 // Another reason is I don't like to pollute domain layer
 // with freezed annotation, freezed is mostly meant to be for infra layer
 class PotatoTimerTask {
-  PotatoTimerTask({
+  const PotatoTimerTask({
     this.id,
     required this.title,
     required this.description,
