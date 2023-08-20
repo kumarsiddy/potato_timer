@@ -89,7 +89,14 @@ abstract class _HomePageStore extends BaseStore with Store {
     _timer ??= Timer.periodic(
       const Duration(seconds: 1),
       (_) {
-        final modifiedTasks = tasks.map(_modifyAndMarkTask).toList();
+        final modifiedTasks = tasks.map(
+          (task) {
+            final modifiedTask = _getModifiedTask(task);
+            _doOperationOnTask(modifiedTask);
+            return modifiedTask;
+          },
+        ).toList();
+
         tasks
           ..clear()
           ..addAll(modifiedTasks);
@@ -97,7 +104,7 @@ abstract class _HomePageStore extends BaseStore with Store {
     );
   }
 
-  PotatoTimerTask _modifyAndMarkTask(
+  PotatoTimerTask _getModifiedTask(
     PotatoTimerTask task,
   ) {
     final finished = task.elapsedSeconds == 0;
@@ -112,14 +119,20 @@ abstract class _HomePageStore extends BaseStore with Store {
               : task.elapsedSeconds - 1,
     );
 
-    if (finished) {
-      _removeTask(task.id!);
-      tasks.insert(0, modifiedTask);
-    }
-    // Marking for update, and sending it to taskManager
-    _taskManager.addToQueue(modifiedTask);
-
     return modifiedTask;
+  }
+
+  void _doOperationOnTask(
+    PotatoTimerTask task,
+  ) {
+    // If task is finished, send it to top
+    if (task.finished) {
+      _removeTask(task.id!);
+      tasks.insert(0, task);
+    }
+
+    // Marking for update, and sending it to taskManager
+    _taskManager.addToQueue(task);
   }
 
   @action
