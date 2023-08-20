@@ -37,9 +37,13 @@ class HomePage extends BaseStatelessWidget<HomePageStore> {
   Future<void> _openTaskPage(
     BuildContext context,
   ) async {
-    RouteHandler.navigateTo(
+    await RouteHandler.navigateTo(
       context,
       routeId: RouteId.taskPage,
     );
+
+    // Calling init method as soon as it will come back from
+    // add Task screen
+    storeOf<HomePageStore>(context).init();
   }
 }

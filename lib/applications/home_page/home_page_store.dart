@@ -45,7 +45,7 @@ abstract class _HomePageStore extends BaseStore with Store {
   }
 
   Future<void> _initAudioPlayer() async {
-    _audioPlayer = AudioPlayer();
+    _audioPlayer ??= AudioPlayer();
     await _audioPlayer?.setSource(AssetSource(AppAssetSource.alert.path));
     await _audioPlayer?.setReleaseMode(ReleaseMode.loop);
     await _audioPlayer?.setPlayerMode(PlayerMode.lowLatency);
@@ -70,7 +70,7 @@ abstract class _HomePageStore extends BaseStore with Store {
   }
 
   void _initAudioReaction() {
-    _audioReaction = reaction(
+    _audioReaction ??= reaction(
       (_) => tasks.asObservable(),
       (_) {
         final isAnyFinishedTask = tasks.toList().any(
@@ -136,7 +136,12 @@ abstract class _HomePageStore extends BaseStore with Store {
   ) async {
     _removeTask(task.id!);
     // Sending this task to Queue
-    _taskManager.addToQueue(task.copyWith(finished: true));
+    _taskManager.addToQueue(
+      task.copyWith(
+        finished: true,
+        markForDeletion: true,
+      ),
+    );
     await _pauseAlert();
   }
 

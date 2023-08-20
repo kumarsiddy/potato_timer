@@ -47,7 +47,7 @@ class TaskManager implements ITaskManager {
       final task = copiedTaskQueue.removeFirst();
 
       // It means it has been completed
-      if (task.finished) {
+      if (task.markForDeletion) {
         futures.add(_localCacheHandler.deleteTask(task: task));
       } else {
         futures.add(_localCacheHandler.updateTask(task: task));

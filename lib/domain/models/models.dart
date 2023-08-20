@@ -22,6 +22,7 @@ class PotatoTimerTask {
     required this.elapsedSeconds,
     this.paused = false,
     this.finished = false,
+    this.markForDeletion = false,
   });
 
   final int? id;
@@ -30,6 +31,7 @@ class PotatoTimerTask {
   final int elapsedSeconds;
   final bool paused;
   final bool finished;
+  final bool markForDeletion;
 
   PotatoTimerTask copyWith({
     final int? id,
@@ -38,6 +40,7 @@ class PotatoTimerTask {
     final int? elapsedSeconds,
     final bool? paused,
     final bool? finished,
+    final bool? markForDeletion,
   }) {
     return PotatoTimerTask(
       id: id ?? this.id,
@@ -46,6 +49,7 @@ class PotatoTimerTask {
       elapsedSeconds: elapsedSeconds ?? this.elapsedSeconds,
       paused: paused ?? this.paused,
       finished: finished ?? this.finished,
+      markForDeletion: markForDeletion ?? this.markForDeletion,
     );
   }
 }

@@ -24,9 +24,9 @@ abstract class _BaseStore with Store {
   @readonly
   IAppException? _appException;
 
-  Future<void> init(
+  Future<void> init([
     Map<String, dynamic>? args,
-  ) async {
+  ]) async {
     _networkChangeSubscription =
         _connectionAwareFacade.connectionStatusStream.listen(
       (status) => _connectionStatus = status,
