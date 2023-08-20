@@ -6,7 +6,7 @@ import 'package:potato_timer/domain/i_local_cache_handler.dart';
 import 'package:potato_timer/domain/models/models.dart';
 import 'package:potato_timer/infrastructure/database/app_database.dart';
 import 'package:potato_timer/infrastructure/exceptions.dart';
-import 'package:potato_timer/layer_bridge/infra_to_domain.dart';
+import 'package:potato_timer/infrastructure/infra_to_domain.dart';
 
 @Injectable(as: ILocalCacheHandler)
 class LocalCacheHandler implements ILocalCacheHandler {

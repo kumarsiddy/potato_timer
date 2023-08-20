@@ -5,10 +5,9 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:injectable/injectable.dart';
 import 'package:potato_timer/domain/i_connection_aware_facade.dart';
 import 'package:potato_timer/domain/models/models.dart';
-import 'package:potato_timer/env.dart';
 import 'package:rxdart/rxdart.dart';
 
-@LazySingleton(as: IConnectionAwareFacade, env: injectionEnv)
+@LazySingleton(as: IConnectionAwareFacade)
 class ConnectionAwareFacade implements IConnectionAwareFacade {
   ConnectionAwareFacade() {
     _connectivity.onConnectivityChanged.listen(
