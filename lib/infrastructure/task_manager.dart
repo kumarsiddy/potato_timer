@@ -2,11 +2,12 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:injectable/injectable.dart';
+import 'package:potato_timer/config/env.dart';
 import 'package:potato_timer/domain/i_local_cache_handler.dart';
 import 'package:potato_timer/domain/i_task_manager.dart';
 import 'package:potato_timer/domain/models/models.dart';
 
-@Singleton(as: ITaskManager)
+@Singleton(as: ITaskManager, env: injectionEnv)
 class TaskManager implements ITaskManager {
   TaskManager(this._localCacheHandler);
 

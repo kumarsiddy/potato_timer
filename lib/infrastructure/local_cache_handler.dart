@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
+import 'package:potato_timer/config/env.dart';
 import 'package:potato_timer/domain/i_exceptions.dart';
 import 'package:potato_timer/domain/i_local_cache_handler.dart';
 import 'package:potato_timer/domain/models/models.dart';
@@ -8,7 +9,7 @@ import 'package:potato_timer/infrastructure/database/app_database.dart';
 import 'package:potato_timer/infrastructure/exceptions.dart';
 import 'package:potato_timer/infrastructure/infra_to_domain.dart';
 
-@Injectable(as: ILocalCacheHandler)
+@Injectable(as: ILocalCacheHandler, env: injectionEnv)
 class LocalCacheHandler implements ILocalCacheHandler {
   LocalCacheHandler(
     this._appDatabase,

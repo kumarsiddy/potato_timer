@@ -37,7 +37,7 @@ abstract class _HomePageStore extends BaseStore with Store {
   ]) async {
     await Future.wait([
       _initAudioPlayer(),
-      _getAllSavedTasks(),
+      _fetchAllSavedTasks(),
     ]);
     _initAudioReaction();
     _runCountDownTimerOnTask();
@@ -52,7 +52,7 @@ abstract class _HomePageStore extends BaseStore with Store {
   }
 
   @action
-  Future<void> _getAllSavedTasks() async {
+  Future<void> _fetchAllSavedTasks() async {
     showLoader();
 
     final allTasksOrFailure = await _localCacheHandler.getAllSavedTasks();
