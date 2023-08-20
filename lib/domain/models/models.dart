@@ -52,4 +52,11 @@ class PotatoTimerTask {
       markForDeletion: markForDeletion ?? this.markForDeletion,
     );
   }
+
+  static int compareTaskBasedOnTimeLeft(
+    PotatoTimerTask task1,
+    PotatoTimerTask task2,
+  ) {
+    return task1.elapsedSeconds.compareTo(task2.elapsedSeconds);
+  }
 }

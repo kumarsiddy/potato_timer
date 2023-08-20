@@ -61,9 +61,7 @@ abstract class _HomePageStore extends BaseStore with Store {
       (result) {
         // clearing if any data is before there
         // then adding it
-        tasks
-          ..clear()
-          ..addAll(result);
+        tasks = ObservableList.of(result);
         hideLoader();
       },
     );
@@ -92,14 +90,15 @@ abstract class _HomePageStore extends BaseStore with Store {
         final modifiedTasks = tasks.map(
           (task) {
             final modifiedTask = _getModifiedTask(task);
-            _doOperationOnTask(modifiedTask);
+            // Marking for update, and sending it to taskManager
+            // to be taken care in next set of batch update
+            _taskManager.addToQueue(task);
             return modifiedTask;
           },
-        ).toList();
+        ).toList()
+          ..sort(PotatoTimerTask.compareTaskBasedOnTimeLeft);
 
-        tasks
-          ..clear()
-          ..addAll(modifiedTasks);
+        tasks = ObservableList.of(modifiedTasks);
       },
     );
   }
@@ -122,6 +121,7 @@ abstract class _HomePageStore extends BaseStore with Store {
     return modifiedTask;
   }
 
+  @action
   void _doOperationOnTask(
     PotatoTimerTask task,
   ) {
@@ -130,9 +130,6 @@ abstract class _HomePageStore extends BaseStore with Store {
       _removeTask(task.id!);
       tasks.insert(0, task);
     }
-
-    // Marking for update, and sending it to taskManager
-    _taskManager.addToQueue(task);
   }
 
   @action
