@@ -32,9 +32,9 @@ abstract class _HomePageStore extends BaseStore with Store {
   ObservableList<PotatoTimerTask> tasks = ObservableList<PotatoTimerTask>();
 
   @override
-  Future<void> init(
+  Future<void> init([
     Map<String, dynamic>? args,
-  ) async {
+  ]) async {
     await Future.wait([
       _initAudioPlayer(),
       _getAllSavedTasks(),

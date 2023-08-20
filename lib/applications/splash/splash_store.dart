@@ -16,9 +16,9 @@ abstract class _SplashStore extends BaseStore with Store {
   bool _loaded = false;
 
   @override
-  Future<void> init(
+  Future<void> init([
     Map<String, dynamic>? args,
-  ) async {
+  ]) async {
     _loadData();
     return super.init(args);
   }
