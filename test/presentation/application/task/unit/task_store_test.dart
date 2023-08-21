@@ -4,7 +4,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:potato_timer/domain/i_connection_aware_facade.dart';
 import 'package:potato_timer/domain/i_local_cache_handler.dart';
-import 'package:potato_timer/domain/models/models.dart';
 import 'package:potato_timer/presentation/applications/task/task_store.dart';
 
 import '../../../../config/test_config.dart';
@@ -116,30 +115,24 @@ void main() {
       test(
         'Test Adding Task',
         () async {
-          const task = PotatoTimerTask(
-            title: 'Turn off Geyser',
-            description: 'Do you want to burn ? Be Lazy : Turn off Geyser',
-            elapsedSeconds: 930,
+          when(handler.addTask(task: anyNamed('task'))).thenAnswer(
+            (_) async => Future.value(right(true)),
           );
           // Populating the data
           store
-            ..onTaskNameChange(task.title)
-            ..onTaskDescriptionChange(task.description)
+            ..onTaskNameChange('Turn off Geyser')
+            ..onTaskDescriptionChange(
+              'Do you want to burn ? Be Lazy : Turn off Geyser',
+            )
             ..onHourChange('0')
             ..onMinuteChange('15')
             ..onSecondChange('30');
 
-          when(handler.addTask(task: task)).thenAnswer(
-            (_) => Future.value(right(true)),
-          );
-
           // Perform action
-          store.onAddTaskButtonClick(task);
+          await store.onAddTaskButtonClick();
           expect(store.taskSaved, true);
         },
       );
     },
   );
 }
-
-class FakeTask extends Fake implements PotatoTimerTask {}
