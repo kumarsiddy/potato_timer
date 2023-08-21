@@ -6,7 +6,6 @@ import 'package:mockito/mockito.dart';
 import 'package:potato_timer/domain/i_connection_aware_facade.dart';
 import 'package:potato_timer/domain/i_local_cache_handler.dart';
 import 'package:potato_timer/domain/i_task_manager.dart';
-import 'package:potato_timer/infrastructure/database/app_database.dart';
 import 'package:potato_timer/presentation/applications/home_page/home_page_store.dart';
 
 import '../../../../config/sample_data.dart';
@@ -18,7 +17,6 @@ import 'home_page_store_test.mocks.dart';
   MockSpec<IConnectionAwareFacade>(),
   MockSpec<ILocalCacheHandler>(),
   MockSpec<ITaskManager>(),
-  MockSpec<AppDatabase>(),
 ])
 void main() {
   late final MockIConnectionAwareFacade connectionAwareFacade;
@@ -28,6 +26,9 @@ void main() {
 
   setUpAll(
     () async {
+      // configure testing related stuff
+      await init();
+
       connectionAwareFacade = MockIConnectionAwareFacade();
       handler = MockILocalCacheHandler();
       taskManager = MockITaskManager();
@@ -41,7 +42,6 @@ void main() {
         audioPlayer,
       );
 
-      await init();
       when(handler.getAllSavedTasks()).thenAnswer(
         (_) => Future.value(right(sampleTaskData)),
       );
@@ -61,7 +61,7 @@ void main() {
   );
 
   group(
-    'description',
+    'Home Page Store Unit Testing',
     () {
       test(
         'Init Method Testing on tasks',
