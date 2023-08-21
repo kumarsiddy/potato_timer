@@ -1,19 +1,8 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:potato_timer/utils/utils.dart';
-
-import 'di/injection.dart';
-
-const _test = 'test';
 
 Future<void> init() async {
   TestWidgetsFlutterBinding.ensureInitialized();
-
-  // Setting up Test injection
-  configureTestInjection(_test);
-
   _setupConnectivityPlusMock();
   _setupAudioPlayersMock();
   _setupPathProviderMock();
@@ -62,10 +51,4 @@ void _setupPathProviderMock() {
       }
     },
   );
-}
-
-void registerFallbackValues() {
-  registerFallbackValue(AssetSource(AppAssetSource.alert.path));
-  registerFallbackValue(ReleaseMode.loop);
-  registerFallbackValue(PlayerMode.lowLatency);
 }

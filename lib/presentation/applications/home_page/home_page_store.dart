@@ -19,12 +19,13 @@ abstract class _HomePageStore extends BaseStore with Store {
     super.connectionAwareFacade,
     this._localCacheHandler,
     this._taskManager,
+    this._audioPlayer,
   );
 
   final ILocalCacheHandler _localCacheHandler;
   final ITaskManager _taskManager;
+  final AudioPlayer _audioPlayer;
 
-  AudioPlayer? _audioPlayer;
   ReactionDisposer? _audioReaction;
   Timer? _timer;
 
@@ -45,10 +46,9 @@ abstract class _HomePageStore extends BaseStore with Store {
   }
 
   Future<void> _initAudioPlayer() async {
-    _audioPlayer ??= AudioPlayer();
-    await _audioPlayer?.setSource(AssetSource(AppAssetSource.alert.path));
-    await _audioPlayer?.setReleaseMode(ReleaseMode.loop);
-    await _audioPlayer?.setPlayerMode(PlayerMode.lowLatency);
+    await _audioPlayer.setSource(AssetSource(AppAssetSource.alert.path));
+    await _audioPlayer.setReleaseMode(ReleaseMode.loop);
+    await _audioPlayer.setPlayerMode(PlayerMode.lowLatency);
   }
 
   @action
@@ -170,7 +170,7 @@ abstract class _HomePageStore extends BaseStore with Store {
   @override
   Future<void> dispose() async {
     _timer?.cancel();
-    await _audioPlayer?.dispose();
+    await _audioPlayer.dispose();
     _audioReaction?.call();
     return super.dispose();
   }

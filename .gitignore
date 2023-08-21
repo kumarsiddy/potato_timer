@@ -15,6 +15,7 @@ node_modules/
 *.g.dart
 *.freezed.dart
 *.config.dart
+*.mocks.dart
 .DS_Store
 .atom/
 .buildlog/
