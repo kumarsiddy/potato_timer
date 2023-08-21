@@ -131,6 +131,7 @@ void main() {
           // Perform action
           await store.onAddTaskButtonClick();
           expect(store.taskSaved, true);
+          expect(store.loading, false);
         },
       );
     },
