@@ -55,16 +55,7 @@ class TaskManager implements ITaskManager {
       }
     }
 
-    Future.wait(futures).then(
-      (List results) {
-        print('All futures completed successfully');
-        print(results);
-      },
-    ).catchError(
-      (error) {
-        print('An error occurred: $error');
-      },
-    );
+    await Future.wait(futures);
   }
 
   @override

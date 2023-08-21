@@ -19,14 +19,6 @@ class ConnectionAwareFacade implements IConnectionAwareFacade {
   static const Duration _defaultTimeOut = Duration(milliseconds: 3000);
 
   /// Predefined reliable addresses.
-  /// but should be enough. See https://www.dnsperf.com/#!dns-resolvers
-  ///
-  /// Addresses info:
-  /// | Address        | Provider   | Info                                            |
-  /// |:---------------|:-----------|:------------------------------------------------|
-  /// | 1.1.1.1        | CloudFlare | https://1.1.1.1                                 |
-  /// | 8.8.4.4        | Google     | https://developers.google.com/speed/public-dns/ |
-  /// | 208.67.222.222 | OpenDNS    | https://use.opendns.com/                        |
   static final List<_AddressCheckOptions> _defaultAddresses =
       List.unmodifiable([
     _AddressCheckOptions(

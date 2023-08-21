@@ -160,11 +160,11 @@ abstract class _HomePageStore extends BaseStore with Store {
   }
 
   Future<void> _playAlert() async {
-    await _audioPlayer?.resume();
+    await _audioPlayer.resume();
   }
 
   Future<void> _pauseAlert() async {
-    await _audioPlayer?.pause();
+    await _audioPlayer.pause();
   }
 
   @override

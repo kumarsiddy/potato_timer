@@ -75,7 +75,7 @@ abstract class RouteHandler {
         return _buildRoute(routeSettings, HomePage());
       case RouteId.taskPage:
         return _buildRoute(routeSettings, TaskPage());
-      default:
+      case RouteId.noRoute:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
             body: Center(
