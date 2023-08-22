@@ -122,17 +122,6 @@ abstract class _HomePageStore extends BaseStore with Store {
   }
 
   @action
-  void _doOperationOnTask(
-    PotatoTimerTask task,
-  ) {
-    // If task is finished, send it to top
-    if (task.finished) {
-      _removeTask(task.id!);
-      tasks.insert(0, task);
-    }
-  }
-
-  @action
   void togglePauseResumeTask(
     PotatoTimerTask task,
   ) {
