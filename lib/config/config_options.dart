@@ -1,5 +1,8 @@
 import 'package:potato_timer/config/env.dart';
 
+/// This class [IConfigs] is the base class for all environments
+/// defined in the app. This will contain all app + environment related
+/// constant values
 abstract class IConfigs {
   IConfigs._();
 

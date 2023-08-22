@@ -5,6 +5,8 @@ import 'package:potato_timer/config/env.dart';
 
 final getIt = GetIt.instance;
 
+/// The [configureDependencies] method initializes all necessary dependencies
+/// before rendering the UI.
 @InjectableInit(
   initializerName: 'init', // default
   preferRelativeImports: true, // default

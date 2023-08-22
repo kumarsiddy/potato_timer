@@ -1,3 +1,4 @@
+/// Environment defined for the app
 class Env {
   const Env(this.name);
 
