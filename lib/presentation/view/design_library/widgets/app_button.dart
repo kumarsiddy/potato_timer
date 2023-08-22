@@ -27,6 +27,7 @@ abstract class _BaseButton extends StatelessWidget {
   }
 }
 
+/// Represents the buttons used in the app
 class AppButton extends _BaseButton {
   const AppButton._({
     required super.stringKey,

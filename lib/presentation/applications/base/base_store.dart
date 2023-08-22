@@ -7,6 +7,10 @@ import 'package:potato_timer/domain/models/models.dart';
 
 part 'base_store.g.dart';
 
+/// The base class for all MobXStores used in the app.
+/// It offers essential features like [showLoader()], [hideLoader()],
+/// and [handleException()]. Additionally, it ensures that connected UIs
+/// possess connection-aware capabilities.
 abstract class BaseStore = _BaseStore with _$BaseStore;
 
 abstract class _BaseStore with Store {

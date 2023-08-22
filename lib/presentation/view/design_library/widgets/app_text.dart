@@ -83,6 +83,7 @@ abstract class _BaseText extends StatelessWidget {
   }
 }
 
+// Represents all text which could be used in the app
 class AppText extends _BaseText {
   const AppText._({
     required super.type,

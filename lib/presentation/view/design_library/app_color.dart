@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// This is used for all the colors used in the app
 enum AppColor {
   // Primary Colors
   primary(Color(0xFF216C2E)),

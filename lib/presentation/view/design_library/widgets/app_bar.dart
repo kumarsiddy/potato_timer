@@ -44,6 +44,9 @@ abstract class _BaseAppBar extends StatelessWidget
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
+/// This represents the app bar used in the app.
+/// Currently It has only two methods as per use
+/// This should get extended as per the usage
 class CustomAppBar extends _BaseAppBar {
   const CustomAppBar._({
     super.stringKey,

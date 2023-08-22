@@ -9,6 +9,7 @@ import 'package:potato_timer/infrastructure/database/tables.dart';
 
 part 'app_database.g.dart';
 
+/// Represents the database connection for the app.
 @singleton
 @DriftDatabase(tables: [Tasks])
 class AppDatabase extends _$AppDatabase {

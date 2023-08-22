@@ -32,6 +32,7 @@ abstract class _BaseImage extends StatelessWidget {
   }
 }
 
+// Represents all images used in the app
 class AppImage extends _BaseImage {
   const AppImage({
     super.key,

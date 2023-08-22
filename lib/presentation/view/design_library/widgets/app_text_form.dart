@@ -57,6 +57,7 @@ abstract class _BaseTextForm extends StatelessWidget {
   }
 }
 
+/// Represents all the textForms used in the app
 class AppTextForm extends _BaseTextForm {
   const AppTextForm._(
     super.valueObject, {

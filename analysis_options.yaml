@@ -9,6 +9,7 @@ analyzer:
     missing_return: error
     use_build_context_synchronously: ignore
     unawaited_futures: ignore
+    library_private_types_in_public_api: ignore
 
   exclude:
     - "**/*.g.dart"

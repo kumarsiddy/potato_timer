@@ -55,7 +55,7 @@ class _PotatoTimerAppState extends State<PotatoTimerApp> {
 
   // App is being terminated or detached
   Future<void> onDetach() async {
-    await _taskManager.saveImmediatelyToDb();
+    await _taskManager.doImmediateOperationOnDB();
     _taskManager.dispose();
   }
 

@@ -3,6 +3,7 @@ import 'package:potato_timer/presentation/view/design_library/design_library.dar
 import 'package:potato_timer/presentation/view/design_library/widgets/app_button.dart';
 import 'package:potato_timer/utils/string_keys.dart';
 
+/// Wrapper for the child screen
 class ParentWrapperWidget extends StatelessWidget {
   const ParentWrapperWidget({
     super.key,

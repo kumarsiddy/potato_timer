@@ -11,9 +11,6 @@ import 'package:potato_timer/domain/models/models.dart';
 class TaskManager implements ITaskManager {
   TaskManager(this._localCacheHandler);
 
-  // periodic time defined in seconds
-  static const int _periodicTimeInSeconds = 6;
-
   final ILocalCacheHandler _localCacheHandler;
 
   final Queue<PotatoTimerTask> _taskQueue = Queue<PotatoTimerTask>();
@@ -29,17 +26,20 @@ class TaskManager implements ITaskManager {
   }
 
   @override
+  int get periodicTimeInSeconds => 6;
+
+  @override
   Future<void> runUpdatePeriodically() async {
     _timer ??= Timer.periodic(
-      const Duration(seconds: _periodicTimeInSeconds),
+      Duration(seconds: periodicTimeInSeconds),
       (_) async {
-        await saveImmediatelyToDb();
+        await doImmediateOperationOnDB();
       },
     );
   }
 
   @override
-  Future<void> saveImmediatelyToDb() async {
+  Future<void> doImmediateOperationOnDB() async {
     final copiedTaskQueue = Queue.of(_taskQueue);
     _taskQueue.clear();
     final futures = <Future>[];

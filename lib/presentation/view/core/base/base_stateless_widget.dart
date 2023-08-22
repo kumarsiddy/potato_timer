@@ -18,6 +18,17 @@ part '../../design_library/screens/no_internet_page.dart';
 
 part 'base_stateful_widget.dart';
 
+/// The base class that serves as the foundation for each screen within the app.
+///
+/// This class encapsulates essential functionalities such as
+/// [onStart] and [dispose], designed to provide route-aware features.
+/// It seamlessly orchestrates the creation of the store class,
+/// which it subsequently passes through the widget tree using
+/// the Provider mechanism. This allows child widgets to easily
+/// access the store for state management.
+///
+/// Additionally, this base class offers a comprehensive
+/// solution for managing internet glitches and exceptions.
 abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
     with RouteAware {
   BaseStatelessWidget({super.key});
@@ -38,7 +49,7 @@ abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
       child: _BaseStatefulWidget(
         baseStore: childStore,
         onStart: onStart,
-        onDestroy: onDestroy,
+        onDestroy: dispose,
         onConnectivityChange: onConnectivityChange,
         args: argsFromPreviousRoute,
         builder: buildScreen,
@@ -89,7 +100,7 @@ abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
   }
 
   /// This method will be called when widget will be destroyed
-  Future<void> onDestroy(
+  Future<void> dispose(
     BuildContext context,
   ) async {
     _exceptionReactionDispose();
