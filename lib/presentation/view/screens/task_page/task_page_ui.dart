@@ -10,7 +10,7 @@ class _TaskPageUI extends StatelessWidget {
         return ParentWrapperWidget(
           height: SizeConfig.safeAreaScreenHeightWithoutToolbar,
           buttonText: StringKey.addTask,
-          onPressed: store.validDuration ? store.onAddTaskButtonClick : null,
+          onPressed: store.validTask ? store.onAddTaskButtonClick : null,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -103,12 +103,12 @@ void main() {
             ..onHourChange('0')
             ..onMinuteChange('0')
             ..onSecondChange('0');
-          expect(store.validDuration, false);
+          expect(store.validTask, false);
           store
             ..onHourChange('12')
             ..onMinuteChange('48')
             ..onSecondChange('39');
-          expect(store.validDuration, true);
+          expect(store.validTask, true);
         },
       );
 

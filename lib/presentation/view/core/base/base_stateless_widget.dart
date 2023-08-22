@@ -71,7 +71,7 @@ abstract class BaseStatelessWidget<T extends BaseStore> extends StatelessWidget
     }
   }
 
-  /// This method will be called when widget will be init
+  /// This method will be called when widget will be initialised
   @mustCallSuper
   Future<void> onStart(
     BuildContext context,

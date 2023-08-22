@@ -20,7 +20,7 @@ Listed below are some positive aspects I've highlighted :
 
 * Defined a `base_stateless_widget` which will work as a parent of each screen. Some useful methods of this class are :
   - `onStart()` => called as soon as widget is loaded
-  - `onDestroy()` => called as soon as widget is detatched
+  - `dispose()` => called as soon as widget is detached
   - `onConnectivityChange()` => called as soon as internet connection changes
   - `didPopNext()`, `didPush()`, `didPop()`, `didPushNext()` => Router aware calls
   - It automatically inject the store to the child tree, so No more injection call in the child e.g: `class HomePage extends BaseStatelessWidget<HomePageStore>` this line of code will automatically take care of injecting `HomePageStore` object to the tree.

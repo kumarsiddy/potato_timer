@@ -38,7 +38,7 @@ abstract class _TaskStore extends BaseStore with Store {
   Duration get _duration => _getDuration();
 
   @computed
-  bool get validDuration => _isValidDuration();
+  bool get validTask => _isValidTask();
 
   @readonly
   bool _taskSaved = false;
@@ -111,7 +111,7 @@ abstract class _TaskStore extends BaseStore with Store {
     );
   }
 
-  bool _isValidDuration() {
+  bool _isValidTask() {
     return _taskTitleValueObject?.isValid == true &&
         _taskDescriptionValueObject?.isValid == true &&
         _duration.inMilliseconds > 0;
