@@ -106,4 +106,4 @@ Within this pattern, I've organized files into three key layers:
 
 ## Feedback
 
-Your feedback is highly valuable. If my submission isn't accepted, I'd greatly appreciate your insights on how I could enhance the code, architecture, or any aspects within it.
+Your feedback is highly valuable. If my submission isn't accepted, I'd greatly appreciate your insights on how I could have enhanced the code, architecture, or any aspects within it.
