@@ -11,6 +11,7 @@ final getIt = GetIt.instance;
   initializerName: 'init', // default
   preferRelativeImports: true, // default
   asExtension: true, // default
+  generateForDir: ['lib'],
 )
 void configureDependencies(Env env) => getIt.init(
       environment: env.name,
