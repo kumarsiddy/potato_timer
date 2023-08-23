@@ -6,6 +6,7 @@ import 'package:potato_timer/domain/i_connection_aware_facade.dart';
 import 'package:potato_timer/domain/i_local_cache_handler.dart';
 import 'package:potato_timer/domain/i_task_manager.dart';
 import 'package:potato_timer/presentation/applications/home_page/home_page_store.dart';
+import 'package:potato_timer/presentation/applications/task/task_store.dart';
 
 import 'di/test_injection.dart';
 
@@ -26,6 +27,7 @@ Future<void> init() async {
   MockSpec<ILocalCacheHandler>(),
   MockSpec<ITaskManager>(),
   MockSpec<HomePageStore>(),
+  MockSpec<TaskStore>(),
 ])
 void generateMocks() {}
 

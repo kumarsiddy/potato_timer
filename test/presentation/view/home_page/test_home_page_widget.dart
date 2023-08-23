@@ -42,17 +42,6 @@ void main() {
     'Home Page Widget Test',
     () {
       testWidgets(
-        'Checking if FAB (Button to add task) is visible',
-        (tester) async {
-          final homePage = HomePage();
-          await tester.pumpWidget(makeTestableWidget(child: homePage));
-
-          final addTaskFab = find.byIcon(Icons.add);
-          expect(addTaskFab, findsOneWidget);
-        },
-      );
-
-      testWidgets(
         'Checking if App bar showing correct title',
         (tester) async {
           final homePage = HomePage();
@@ -60,6 +49,17 @@ void main() {
 
           final isAppBarTitleVisible = find.text(StringKey.potatoTimer.value);
           expect(isAppBarTitleVisible, findsOneWidget);
+        },
+      );
+
+      testWidgets(
+        'Checking if FAB (Button to add task) is visible',
+        (tester) async {
+          final homePage = HomePage();
+          await tester.pumpWidget(makeTestableWidget(child: homePage));
+
+          final addTaskFab = find.byIcon(Icons.add);
+          expect(addTaskFab, findsOneWidget);
         },
       );
     },
