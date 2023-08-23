@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:potato_timer/presentation/applications/home_page/home_page_store.dart';
 
 import '../test_config.mocks.dart';
 
@@ -18,4 +19,7 @@ abstract class TestRegisterModule {
 
   @injectable
   MockAudioPlayer get audioPlayer => MockAudioPlayer();
+
+  @singleton
+  HomePageStore get homePageStore => MockHomePageStore();
 }
