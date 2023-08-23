@@ -1,34 +1,29 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:potato_timer/domain/i_connection_aware_facade.dart';
-import 'package:potato_timer/domain/i_local_cache_handler.dart';
 import 'package:potato_timer/presentation/applications/task/task_store.dart';
 
+import '../../../../config/di/test_injection.dart';
 import '../../../../config/test_config.dart';
-import 'task_store_test.mocks.dart';
+import '../../../../config/test_config.mocks.dart';
 
-@GenerateNiceMocks([
-  MockSpec<IConnectionAwareFacade>(),
-  MockSpec<ILocalCacheHandler>(),
-])
 void main() {
-  late final MockIConnectionAwareFacade connectionAwareFacade;
-  late final MockILocalCacheHandler handler;
   late final TaskStore store;
 
   setUpAll(
     () async {
-      // configure testing related stuff
       await init();
 
-      connectionAwareFacade = MockIConnectionAwareFacade();
-      handler = MockILocalCacheHandler();
+      final connectionAwareFacade = getIt<MockIConnectionAwareFacade>();
+      final handler = getIt<MockILocalCacheHandler>();
 
       store = TaskStore(
         connectionAwareFacade,
         handler,
+      );
+
+      when(handler.addTask(task: anyNamed('task'))).thenAnswer(
+        (_) async => Future.value(right(true)),
       );
     },
   );
@@ -115,9 +110,6 @@ void main() {
       test(
         'Test Adding Task',
         () async {
-          when(handler.addTask(task: anyNamed('task'))).thenAnswer(
-            (_) async => Future.value(right(true)),
-          );
           // Populating the data
           store
             ..onTaskNameChange('Turn off Geyser')

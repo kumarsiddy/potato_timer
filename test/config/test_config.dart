@@ -1,12 +1,31 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:potato_timer/domain/i_connection_aware_facade.dart';
+import 'package:potato_timer/domain/i_local_cache_handler.dart';
+import 'package:potato_timer/domain/i_task_manager.dart';
+
+import 'di/test_injection.dart';
 
 Future<void> init() async {
   TestWidgetsFlutterBinding.ensureInitialized();
   _setupConnectivityPlusMock();
   _setupAudioPlayersMock();
   _setupPathProviderMock();
+  configureTestDependencies();
+  generateMocks();
 }
+
+/// Add all common mocks here which will be used
+/// throughout the app testing
+@GenerateNiceMocks([
+  MockSpec<AudioPlayer>(),
+  MockSpec<IConnectionAwareFacade>(),
+  MockSpec<ILocalCacheHandler>(),
+  MockSpec<ITaskManager>(),
+])
+void generateMocks() {}
 
 void _setupConnectivityPlusMock() {
   TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger

@@ -1,27 +1,14 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:potato_timer/domain/i_connection_aware_facade.dart';
-import 'package:potato_timer/domain/i_local_cache_handler.dart';
-import 'package:potato_timer/domain/i_task_manager.dart';
+import 'package:potato_timer/config/di/injection.dart';
 import 'package:potato_timer/presentation/applications/home_page/home_page_store.dart';
 
 import '../../../../config/sample_data.dart';
 import '../../../../config/test_config.dart';
-import 'home_page_store_test.mocks.dart';
+import '../../../../config/test_config.mocks.dart';
 
-@GenerateNiceMocks([
-  MockSpec<AudioPlayer>(),
-  MockSpec<IConnectionAwareFacade>(),
-  MockSpec<ILocalCacheHandler>(),
-  MockSpec<ITaskManager>(),
-])
 void main() {
-  late final MockIConnectionAwareFacade connectionAwareFacade;
-  late final MockILocalCacheHandler handler;
-  late final ITaskManager taskManager;
   late final HomePageStore store;
 
   setUpAll(
@@ -29,11 +16,10 @@ void main() {
       // configure testing related stuff
       await init();
 
-      connectionAwareFacade = MockIConnectionAwareFacade();
-      handler = MockILocalCacheHandler();
-      taskManager = MockITaskManager();
-
-      final audioPlayer = MockAudioPlayer();
+      final connectionAwareFacade = getIt<MockIConnectionAwareFacade>();
+      final handler = getIt<MockILocalCacheHandler>();
+      final taskManager = getIt<MockITaskManager>();
+      final audioPlayer = getIt<MockAudioPlayer>();
 
       store = HomePageStore(
         connectionAwareFacade,
